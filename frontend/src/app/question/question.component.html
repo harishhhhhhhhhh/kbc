@@ -1,0 +1,8 @@
+<div class="w-screen h-screen flex items-center justify-center">
+    <div class="">
+        <div class="question">{{question}}</div>
+        <div class="options" *ngFor="let opt of options">
+            <button (click)="print(opt)">{{opt.name}}</button>
+        </div>
+    </div>
+</div>
