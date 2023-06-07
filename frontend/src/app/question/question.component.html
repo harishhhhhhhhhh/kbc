@@ -1,8 +1,24 @@
-<div class="w-screen h-screen flex items-center justify-center">
-    <div class="">
-        <div class="question">{{question}}</div>
-        <div class="options" *ngFor="let opt of options">
-            <button (click)="print(opt)">{{opt.name}}</button>
+<div class="w-screen h-screen flex items-center justify-center bgimage bg-gray-800">
+    <div class="p-5  w-3/4 max-h-max bg-slate-500 rounded-[2rem] ">
+        <div class="question flex items-center justify-center text-3xl mb-5">{{question}}</div>
+        <div class="options grid grid-cols-2 gap-x-7 gap-y-12">
+            <div class="borderstyle flex ">
+                <div class="ml-5 borderLeftStyle pr-2">A</div>
+                <div class="ml-5 flex-1">{{option1}}</div>
+                <div class="w-1/12">Lock</div>
+            </div>
+            <div class="borderstyle flex ">
+                <div class="ml-5 borderLeftStyle pr-2">B</div>
+                <div class="ml-5 flex-1">{{option2}}</div>
+            </div>
+            <div class="borderstyle flex ">
+                <div class="ml-5 borderLeftStyle pr-2">C</div>
+                <div class="ml-5 flex-1">{{option3}}</div>
+            </div>
+            <div class="borderstyle flex ">
+                <div class="ml-5 borderLeftStyle pr-2">D</div>
+                <div class="ml-5 flex-1">{{option4}}</div>
+            </div>
         </div>
     </div>
 </div>
