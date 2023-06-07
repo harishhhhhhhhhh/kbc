@@ -1,3 +1,4 @@
-.bgimage {
+.bgimage1 {
   background-image: url("/assets/homebg.png");
+  object-fit: contain;
 }

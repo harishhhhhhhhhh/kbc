@@ -1,0 +1,20 @@
+.bgimage {
+  background-image: url("/assets/homebg.png");
+}
+
+.borderstyle {
+  font-size: 2vw;
+  border: dashed;
+  border-width: 1px 4px;
+  border-radius: 10px 40px;
+  border-color: goldenrod;
+}
+
+button:hover {
+  background-color: red;
+}
+
+.borderLeftStyle {
+  border: dotted goldenrod;
+  border-width: 0 2px 0 0;
+}

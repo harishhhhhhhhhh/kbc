@@ -1,27 +1,30 @@
-<div class=" bgimage bg-[rgba(3,25,68,255)]">
+<div class=" bgimage1 bg-[rgba(3,25,68,255)]">
     <div class="flex  flex-col justify-center items-center h-screen w-screen">
+        <div class="flex flex-col justify-center items-center w-3/4 h-1/2 bg-slate-200 rounded-lg bgimage1 bg-gray-700">
 
-        <div class="mb-5 w-[32rem]">
-            <input type="text" class="form-control" placeholder="Enter your name" />
+            <div class="mb-5 w-3/4 ">
+                <input type="text" class="form-control text-2xl placeholder-gray-400 placeholder:ease-in-out"
+                    [(ngModel)]="name" placeholder="Enter your name" required />
+            </div>
+            <button class="w-1/2" routerLink="/questions" [disabled]="!name"
+                class="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 rounded-lg shadow-inner group w-1/2">
+                <span
+                    class="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
+                <span
+                    class="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
+                <span
+                    class="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-[rgba(3,25,68,255)] group-hover:h-full ease"></span>
+                <span
+                    class="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-[rgba(3,25,68,255)] group-hover:h-full ease "></span>
+                <span
+                    class="absolute inset-0 w-full h-full duration-300 delay-300 bg-gray-900 opacity-0 group-hover:opacity-100"></span>
+                <span
+                    class="relative transition-colors duration-300 delay-200 group-hover:text-white ease text-3xl flex justify-center items-center">Start
+                    New
+                    Game</span>
+            </button>
+
         </div>
-
-        <a href="#"
-            class="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 rounded-lg shadow-inner group w-[32rem] h-[5rem]">
-            <span
-                class="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
-            <span
-                class="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
-            <span
-                class="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
-            <span
-                class="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease "></span>
-            <span
-                class="absolute inset-0 w-full h-full duration-300 delay-300 bg-gray-900 opacity-0 group-hover:opacity-100"></span>
-            <span
-                class="relative transition-colors duration-300 delay-200 group-hover:text-white ease text-3xl flex justify-center items-center">Start
-                New
-                Game</span>
-        </a>
     </div>
 
 
