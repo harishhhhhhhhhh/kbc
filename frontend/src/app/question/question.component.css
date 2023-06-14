@@ -18,3 +18,30 @@ button:hover {
   border: dotted goldenrod;
   border-width: 0 2px 0 0;
 }
+
+/* timer */
+.circle         {
+  /* margin: auto;
+              display: flex;
+              border: solid 10px rgb(12, 12, 12);
+              border-radius: 50%;
+              background-color: rgb(0, 140, 255);
+              
+              width: 100px;
+              height: 100px;
+          align-items: center; */
+
+      display: flex;
+      margin: auto;
+      width: 200px;
+      height: 100px;
+      border: solid 10px rgb(22, 13, 13);
+      border-radius: 150px 150px 0 0;
+      background-color: rgb(28, 30, 148);
+      }
+.circle .timer {
+  margin: auto;
+  color: white;
+}
+
+ /* timer */
