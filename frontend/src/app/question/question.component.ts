@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class QuestionComponent {
   question: string = 'Who is your manager?';
+  timeLeft: number = 60;
+  interval: any;
+  
   options: any = [
     { id: 1, name: 'sample1', crct: true },
     { id: 2, name: 'option2', crct: false },
@@ -20,5 +23,20 @@ export class QuestionComponent {
 
   print(data: any) {
     console.log(data.name);
+  }
+
+
+startTimer() {
+    this.interval = setInterval(() => {
+      if(this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        this.timeLeft = 60;
+      }
+    },1000)
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
   }
 }

@@ -1,4 +1,12 @@
+
+
+
 <div class="w-screen h-screen flex items-center justify-center bgimage bg-gray-800">
+    
+    <button (click)='startTimer()'>Start Timer</button>
+    <button (click)='pauseTimer()'>Pause</button>
+    
+    <div class="circle"><h2 class="timer">{{timeLeft}}</h2></div>
     <div class="p-5  w-3/4 max-h-max bg-slate-500 rounded-[2rem] ">
         <div class="question flex items-center justify-center text-3xl mb-5">{{question}}</div>
         <div class="options grid grid-cols-2 gap-x-7 gap-y-12">
