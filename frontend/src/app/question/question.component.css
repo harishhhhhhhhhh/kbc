@@ -3,15 +3,11 @@
 }
 
 .borderstyle {
-  font-size: 2vw;
+  font-size: 1.74rem;
   border: dashed;
   border-width: 1px 4px;
   border-radius: 10px 40px;
   border-color: goldenrod;
-}
-
-button:hover {
-  background-color: red;
 }
 
 .borderLeftStyle {
@@ -20,7 +16,7 @@ button:hover {
 }
 
 /* timer */
-.circle         {
+.circle {
   /* margin: auto;
               display: flex;
               border: solid 10px rgb(12, 12, 12);
@@ -31,17 +27,35 @@ button:hover {
               height: 100px;
           align-items: center; */
 
-      display: flex;
-      margin: auto;
-      width: 200px;
-      height: 100px;
-      border: solid 10px rgb(22, 13, 13);
-      border-radius: 150px 150px 0 0;
-      background-color: rgb(28, 30, 148);
-      }
+  display: flex;
+  margin: auto;
+  width: 200px;
+  height: 100px;
+  border: solid 10px rgb(22, 13, 13);
+  border-radius: 150px 150px 0 0;
+  background-color: rgb(28, 30, 148);
+}
 .circle .timer {
   margin: auto;
   color: white;
 }
 
- /* timer */
+/* timer */
+
+.colors {
+  background-color: red;
+}
+
+.bottombtn {
+  background-color: white;
+  padding: 0.6rem;
+  font-size: 1.5em;
+  border-radius: 12px;
+
+  cursor: pointer;
+}
+
+.bottombtn:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+}

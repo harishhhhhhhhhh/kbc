@@ -1,32 +1,64 @@
+<div class="w-screen h-screen flex flex-col items-center justify-center bgimage bg-gray-800 relative">
+    <div class="flex w-[30%] justify-evenly items-center">
+        <div>
+            <button class="btn btn-primary btn-lg text-2xl text-black bg-white " (click)='startTimer()'>Start</button>
+        </div>
+        <div class="circle ">
+            <h2 class="timer font-bold text-[2.5rem]">{{timeLeft}}</h2>
+        </div>
+        <div>
+            <button class="btn btn-primary btn-lg bg-white text-2xl  text-black " (click)='pauseTimer()'>Pause</button>
+        </div>
+
+    </div>
 
 
-
-<div class="w-screen h-screen flex items-center justify-center bgimage bg-gray-800">
-    
-    <button (click)='startTimer()'>Start Timer</button>
-    <button (click)='pauseTimer()'>Pause</button>
-    
-    <div class="circle"><h2 class="timer">{{timeLeft}}</h2></div>
-    <div class="p-5  w-3/4 max-h-max bg-slate-500 rounded-[2rem] ">
+    <div class="p-5  w-3/4 max-h-max bg-white rounded-[2rem] ">
         <div class="question flex items-center justify-center text-3xl mb-5">{{question}}</div>
-        <div class="options grid grid-cols-2 gap-x-7 gap-y-12">
-            <div class="borderstyle flex ">
+        <div class="options grid grid-cols-2 gap-x-7 gap-y-12 ">
+            <div class="borderstyle flex cursor-pointer" #option *ngFor="let opt of options"
+                [ngClass]="{colors:opt.color}" (click)="changeColor(opt.id)">
                 <div class="ml-5 borderLeftStyle pr-2">A</div>
-                <div class="ml-5 flex-1">{{option1}}</div>
-                <div class="w-1/12">Lock</div>
-            </div>
-            <div class="borderstyle flex ">
-                <div class="ml-5 borderLeftStyle pr-2">B</div>
-                <div class="ml-5 flex-1">{{option2}}</div>
-            </div>
-            <div class="borderstyle flex ">
-                <div class="ml-5 borderLeftStyle pr-2">C</div>
-                <div class="ml-5 flex-1">{{option3}}</div>
-            </div>
-            <div class="borderstyle flex ">
-                <div class="ml-5 borderLeftStyle pr-2">D</div>
-                <div class="ml-5 flex-1">{{option4}}</div>
+                <div class="flex  justify-center items-center w-full">{{opt.name}}</div>
+
             </div>
         </div>
     </div>
+    <div class="mt-6 flex justify-end w-3/4">
+        <button class="bottombtn">Lock Answer</button>
+
+    </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="borderstyle flex cursor-pointer" [ngClass]="{color:setColor}" (click)="setColor=!setColor">
+    <div class="ml-5 borderLeftStyle pr-2">A</div>
+    <div class="ml-5 flex-1">{{option1}}</div>
+    <div class="w-1/6">
+        lock
+    </div>
+</div>
+<div class="borderstyle flex cursor-pointer" [ngClass]="{color:setColor}" (click)="setColor=!setColor">
+    <div class="ml-5 borderLeftStyle pr-2">B</div>
+    <div class="ml-5 flex-1">{{option2}}</div>
+</div>
+<div class="borderstyle flex cursor-pointer" [ngClass]="{color:setColor}" (click)="setColor=!setColor">
+    <div class="ml-5 borderLeftStyle pr-2">C</div>
+    <div class="ml-5 flex-1">{{option3}}</div>
+</div>
+<div class="borderstyle flex cursor-pointer" [ngClass]="{color:setColor}" (click)="setColor=!setColor">
+    <div class="ml-5 borderLeftStyle pr-2">D</div>
+    <div class="ml-5 flex-1">{{option4}}</div>
+</div> -->
