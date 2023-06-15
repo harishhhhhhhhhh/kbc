@@ -14,18 +14,40 @@
 
 
     <div class="p-5  w-3/4 max-h-max bg-white rounded-[2rem] ">
-        <div class="question flex items-center justify-center text-3xl mb-5">{{question}}</div>
-        <div class="options grid grid-cols-2 gap-x-7 gap-y-12 ">
-            <div class="borderstyle flex cursor-pointer" #option *ngFor="let opt of options"
-                [ngClass]="{colors:opt.color}" (click)="changeColor(opt.id)">
+        <div class="question flex items-center justify-center text-3xl mb-5">{{questions[0].question}}</div>
+        <div class="options grid grid-cols-2 gap-x-7 gap-y-12 " *ngIf="!correctAnswerFlag && !wrongAnswerFlag">
+
+            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of questions"
+                [ngClass]="{colors:question.color}" (click)="changeColor(question.id)">
+
                 <div class="ml-5 borderLeftStyle pr-2">A</div>
-                <div class="flex  justify-center items-center w-full">{{opt.name}}</div>
+                <div class="flex  justify-center items-center w-full ">{{question.name}}</div>
+
+            </div>
+        </div>
+        <div class="options grid grid-cols-2 gap-x-7 gap-y-12 " *ngIf="correctAnswerFlag ">
+
+            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of    questions"
+                [ngClass]="{ansColor:question.color}">
+
+                <div class="ml-5 borderLeftStyle pr-2">A</div>
+                <div class="flex  justify-center items-center w-full ">{{question.name}}</div>
+
+            </div>
+        </div>
+        <div class="options grid grid-cols-2 gap-x-7 gap-y-12 " *ngIf="wrongAnswerFlag">
+
+            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of questions"
+                [ngClass]="{wrongAnsColor:question.color, ansColor:question.crct}">
+
+                <div class="ml-5 borderLeftStyle pr-2">A</div>
+                <div class="flex  justify-center items-center w-full ">{{question.name}}</div>
 
             </div>
         </div>
     </div>
     <div class="mt-6 flex justify-end w-3/4">
-        <button class="bottombtn">Lock Answer</button>
+        <button class="bottombtn" (click)="displayAnswer()">Lock Answer</button>
 
     </div>
 </div>
