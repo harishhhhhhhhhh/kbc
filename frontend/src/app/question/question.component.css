@@ -76,3 +76,19 @@
   --tw-bg-opacity: 1;
   background-color: rgb(100 116 139 / var(--tw-bg-opacity));
 }
+
+.startBtn {
+  border: 5px solid red;
+  border-radius: 12px;
+}
+
+button {
+  background-color: white;
+}
+.start__btn:hover {
+  background-color: rgb(57, 235, 57);
+}
+
+.pause__btn:hover {
+  background-color: rgb(243, 49, 49);
+}
