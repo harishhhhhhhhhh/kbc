@@ -1,23 +1,26 @@
 <div class="w-screen h-screen flex flex-col items-center justify-center bgimage bg-gray-800 relative">
-    <div class="flex w-[30%] justify-evenly items-center">
-        <div>
-            <button class="btn btn-primary btn-lg text-2xl text-black bg-white " (click)='startTimer()'>Start</button>
+    <div class="flex w-[40%] justify-evenly items-center">
+        <div class="">
+            <button [ngClass]="{startBtn:startFlag}"
+                class=" btn btn-outline-primary btn-lg text-2xl text-black start__btn  w-[7rem]"
+                (click)='startTimer()'>Start</button>
         </div>
-        <div class="circle ">
-            <h2 class="timer font-bold text-[2.5rem]">{{timeLeft}}</h2>
+        <div class=" circle ">
+            <h2 class=" timer font-bold text-[2.5rem]">{{timeLeft}}</h2>
         </div>
-        <div>
-            <button class="btn btn-primary btn-lg bg-white text-2xl  text-black " (click)='pauseTimer()'>Pause</button>
+        <div class="">
+            <button class="btn btn-primary btn-lg  text-2xl  text-black  pause__btn w-[7rem]"
+                [ngClass]="{startBtn:pauseFlag}" (click)='pauseTimer()'>Pause</button>
         </div>
 
     </div>
 
 
     <div class="p-5  w-3/4 max-h-max bg-white rounded-[2rem] ">
-        <div class="question flex items-center justify-center text-3xl mb-5">{{questions[0].question}}</div>
+        <div class="question flex items-center justify-center text-3xl mb-5">{{question}}</div>
         <div class="options grid grid-cols-2 gap-x-7 gap-y-12 " *ngIf="!correctAnswerFlag && !wrongAnswerFlag">
 
-            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of questions"
+            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of options"
                 [ngClass]="{colors:question.color}" (click)="changeColor(question.id)">
 
                 <div class="ml-5 borderLeftStyle pr-2">A</div>
@@ -27,7 +30,7 @@
         </div>
         <div class="options grid grid-cols-2 gap-x-7 gap-y-12 " *ngIf="correctAnswerFlag ">
 
-            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of    questions"
+            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of    options"
                 [ngClass]="{ansColor:question.color}">
 
                 <div class="ml-5 borderLeftStyle pr-2">A</div>
@@ -37,7 +40,7 @@
         </div>
         <div class="options grid grid-cols-2 gap-x-7 gap-y-12 " *ngIf="wrongAnswerFlag">
 
-            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of questions"
+            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of options"
                 [ngClass]="{wrongAnsColor:question.color, ansColor:question.crct}">
 
                 <div class="ml-5 borderLeftStyle pr-2">A</div>
