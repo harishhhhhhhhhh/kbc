@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiServiceService } from '../api-service.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
   name: string = '';
+
+  constructor(private service : ApiServiceService){}
+
+  ngOnInit() {
+    this.service.getQuestions().subscribe((res: any) => {
+      console.log(res);
+    })
+  }
+
+  
 }

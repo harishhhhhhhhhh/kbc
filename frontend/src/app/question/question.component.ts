@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { timestamp } from 'rxjs';
+import { ApiServiceService } from '../api-service.service';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css'],
 })
-export class QuestionComponent {
+export class QuestionComponent implements OnInit{
   question: string = 'What will you choose from the below?';
   timeLeft: number = 60;
   interval: any;
@@ -17,6 +18,17 @@ export class QuestionComponent {
   wrongAnswerFlag: boolean = false;
   startFlag: boolean = false;
   pauseFlag: boolean = false;
+
+  constructor(private service:ApiServiceService){}
+
+  data:any;
+  ngOnInit() {
+    this.service.getQuestions().subscribe((res: any) => {
+      console.log(res);
+      this.data = res;
+
+    })
+  }
 
   options: any = [
     { id: 0, name: 'sample1', crct: true, color: false },
