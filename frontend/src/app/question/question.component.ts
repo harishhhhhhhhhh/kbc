@@ -7,16 +7,55 @@ import { timestamp } from 'rxjs';
   styleUrls: ['./question.component.css'],
 })
 export class QuestionComponent {
-  question: string = 'What will you choose from the below?';
   timeLeft: number = 60;
   interval: any;
   timerStarted: boolean = false;
+  selectedOption: number = -1;
+  crctOption: any;
+  correctAnswerFlag: boolean = false;
+  wrongAnswerFlag: boolean = false;
 
-  options: any = [
-    { id: 0, name: 'sample1', crct: true, color: false },
-    { id: 1, name: 'option2', crct: false, color: false },
-    { id: 2, name: 'osample33', crct: false, color: false },
-    { id: 3, name: 'option4', crct: false, color: false },
+  questions: any = [
+    {
+      id: 0,
+      question: 'this is question 1',
+      opt1: 'sample1',
+      opt2: 'sample2',
+      opt3: 'sample3',
+      opt4: 'sample4',
+      crct: 'sample3',
+      color: false,
+    },
+    {
+      id: 1,
+      question: 'this is question 2',
+      opt1: 'sample1',
+      opt2: 'sample2',
+      opt3: 'sample3',
+      opt4: 'sample4',
+      crct: 'sample2',
+      color: false,
+    },
+    {
+      id: 2,
+      question: 'this is question 3',
+      opt1: 'sample1',
+      opt2: 'sample2',
+      opt3: 'sample3',
+      opt4: 'sample4',
+      crct: 'sample1',
+      color: false,
+    },
+    {
+      id: 3,
+      question: 'this is question 4',
+      opt1: 'sample1',
+      opt2: 'sample2',
+      opt3: 'sample3',
+      opt4: 'sample4',
+      crct: 'sample4',
+      color: false,
+    },
   ];
 
   print(data: any) {
@@ -32,7 +71,7 @@ export class QuestionComponent {
           // alert('entiki poooo');
           this.timeLeft = 60;
         }
-      }, 250);
+      }, 1000);
       this.timerStarted = true;
     }
   }
@@ -42,15 +81,26 @@ export class QuestionComponent {
     clearInterval(this.interval);
   }
 
-  optionClicked: boolean = false;
   changeColor(id: number) {
-    if (!this.optionClicked) {
-      this.options[id].color = !this.options[id].color;
-      this.optionClicked = !this.optionClicked;
-    }
+    this.questions.forEach((element: any) => {
+      element.color = false;
+      if (element.crct == true) {
+        this.crctOption = element.id;
+      }
+    });
+
+    this.questions[id].color = !this.questions[id].color;
+
+    this.selectedOption = id;
+    console.log(this.crctOption);
   }
 
-  dbclicked() {
-    this.optionClicked = false;
+  displayAnswer() {
+    if (this.selectedOption == this.crctOption) {
+      this.correctAnswerFlag = true;
+    } else {
+      this.correctAnswerFlag = false;
+      this.wrongAnswerFlag = true;
+    }
   }
 }
