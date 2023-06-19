@@ -12,9 +12,15 @@ class questionController extends Controller
         // $questions = DB::table('questions')->get();
         // return response()->json(["questions"=>$questions]);
 
-        $result = DB::select(Db::raw('select category,GROUP_CONCAT(question,\':[\',option1,\',\',option2,\',\',option3,\',\',option4,\',\',correct,\']\') AS questions from questions group by category'));
+        // $result = DB::select(Db::raw('select category,GROUP_CONCAT(question,\':[\',option1,\',\',option2,\',\',option3,\',\',option4,\',\',correct,\']\') AS questions from questions group by category'));
+        $results = DB::table('questions')
+    ->select('category', 'question', 'option1', 'option2', 'option3', 'option4', 'correct')
+    ->orderBy('category')
+    ->get();
+
+
        
     
-    return response()->json($result);
+    return response()->json($results);
     }
 }

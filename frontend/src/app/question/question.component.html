@@ -17,14 +17,15 @@
 
 
     <div class="p-5  w-3/4 max-h-max bg-white rounded-[2rem] ">
-        <div class="question flex items-center justify-center text-3xl mb-5">{{question}}</div>
+        <div class="question flex items-center justify-center text-3xl mb-5">{{currentSelectedQuestion}}</div>
+        <div class="question flex items-center justify-center text-3xl mb-5">{{currentSelectedCategoryName}}</div>
         <div class="options grid grid-cols-2 gap-x-7 gap-y-12 " *ngIf="!correctAnswerFlag && !wrongAnswerFlag">
 
-            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of options"
+            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of currentSelectedOptions"
                 [ngClass]="{colors:question.color}" (click)="changeColor(question.id)">
 
                 <div class="ml-5 borderLeftStyle pr-2">A</div>
-                <div class="flex  justify-center items-center w-full ">{{question.name}}</div>
+                <div class="flex  justify-center items-center w-full ">{{question}}</div>
 
             </div>
         </div>
@@ -51,6 +52,7 @@
     </div>
     <div class="mt-6 flex justify-end w-3/4">
         <button class="bottombtn" (click)="displayAnswer()">Lock Answer</button>
+        <button (click)="nextquestion()">next question</button>
 
     </div>
 </div>

@@ -2,12 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { timestamp } from 'rxjs';
 import { ApiServiceService } from '../api-service.service';
 
+interface Question {
+  questionName: string;
+  options: string[];
+  correctAnswer : string;
+}
+
+interface Category {
+  categoryName: string;
+  questions: Question[];
+}
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css'],
 })
-export class QuestionComponent implements OnInit{
+export class QuestionComponent implements OnInit {
   question: string = 'What will you choose from the below?';
   timeLeft: number = 60;
   interval: any;
@@ -19,14 +30,36 @@ export class QuestionComponent implements OnInit{
   startFlag: boolean = false;
   pauseFlag: boolean = false;
 
-  constructor(private service:ApiServiceService){}
+  constructor(private service: ApiServiceService) { }
 
-  data:any;
+  data: any;
+  categories: Category[] = [];
+  totalCategories : any;
   ngOnInit() {
+
     this.service.getQuestions().subscribe((res: any) => {
       console.log(res);
-      this.data = res;
+      const responseData = res;
 
+      responseData.forEach((row: any) => {
+        const categoryName = row.category;
+        const questionName = row.question;
+        const options = [row.option1, row.option2, row.option3, row.option4];
+        const answer  = row.correct;
+
+        let category = this.categories.find((c) => c.categoryName === categoryName);
+
+        if (!category) {
+          category = { categoryName: categoryName, questions: [] };
+          this.categories.push(category);
+        }
+
+        const question: Question = { questionName: questionName, options: options,correctAnswer :answer };
+        category.questions.push(question);
+      });
+
+      console.log("came", this.categories);
+      this.totalCategories = this.categories.length;
     })
   }
 
@@ -88,4 +121,26 @@ export class QuestionComponent implements OnInit{
       this.wrongAnswerFlag = true;
     }
   }
+currentIndex :any =  0;
+currentSelectedQuestion :any ="";
+currentSelectedCategory :any = " ";
+currentSelectedOptions : any = " ";
+currentSelectedCategoryName:any = "";
+
+nextquestion(){
+   this.currentIndex = this.currentIndex % this.totalCategories;
+  this.currentSelectedCategory = this.categories[this.currentIndex];
+
+  // // Randomly select a question from the current category
+  const randomQuestionIndex = Math.floor(Math.random() * this.currentSelectedCategory.questions.length);
+  this.currentSelectedQuestion =this.currentSelectedCategory.questions[randomQuestionIndex].questionName;
+  this.currentSelectedOptions  =this.currentSelectedCategory.questions[randomQuestionIndex].options;
+  this.currentSelectedCategoryName = this.currentSelectedCategory.categoryName;
+
+  console.log( this.currentSelectedCategory);
+	console.log(this.currentSelectedQuestion);
+	console.log(this.currentSelectedOptions);
+  this.currentIndex++;
+}
+
 }
