@@ -1,74 +1,117 @@
-<div class="w-screen h-screen flex flex-col items-center justify-center bgimage bg-gray-800 relative">
-    <div class="flex w-[40%] justify-evenly items-center">
-        <div class="">
-            <button [ngClass]="{startBtn:startFlag}"
-                class=" btn btn-outline-primary btn-lg text-2xl text-black start__btn  w-[7rem]"
-                (click)='startTimer()'>Start</button>
-        </div>
-        <div class=" circle ">
-            <h2 class=" timer font-bold text-[2.5rem]">{{timeLeft}}</h2>
-        </div>
-        <div class="">
-            <button class="btn btn-primary btn-lg  text-2xl  text-black  pause__btn w-[7rem]"
-                [ngClass]="{startBtn:pauseFlag}" (click)='pauseTimer()'>Pause</button>
-        </div>
-
+<div
+  class="w-screen h-screen flex flex-col items-center justify-center bgimage bg-gray-800 relative"
+>
+  <div class="flex w-[40%] justify-evenly items-center">
+    <div class="">
+      <button
+        [ngClass]="{ startBtn: startFlag }"
+        class="btn btn-outline-primary btn-lg text-2xl text-black start__btn w-[7rem]"
+        (click)="startTimer()"
+      >
+        Start
+      </button>
     </div>
-
-
-    <div class="p-5  w-3/4 max-h-max bg-white rounded-[2rem] ">
-        <div class="question flex items-center justify-center text-3xl mb-5">{{currentSelectedQuestion}}</div>
-        <div class="question flex items-center justify-center text-3xl mb-5">{{currentSelectedCategoryName}}</div>
-        <div class="options grid grid-cols-2 gap-x-7 gap-y-12 " *ngIf="!correctAnswerFlag && !wrongAnswerFlag">
-
-            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of currentSelectedOptions"
-                [ngClass]="{colors:question.color}" (click)="changeColor(question.id)">
-
-                <div class="ml-5 borderLeftStyle pr-2">A</div>
-                <div class="flex  justify-center items-center w-full ">{{question}}</div>
-
-            </div>
-        </div>
-        <div class="options grid grid-cols-2 gap-x-7 gap-y-12 " *ngIf="correctAnswerFlag ">
-
-            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of    options"
-                [ngClass]="{ansColor:question.color}">
-
-                <div class="ml-5 borderLeftStyle pr-2">A</div>
-                <div class="flex  justify-center items-center w-full ">{{question.name}}</div>
-
-            </div>
-        </div>
-        <div class="options grid grid-cols-2 gap-x-7 gap-y-12 " *ngIf="wrongAnswerFlag">
-
-            <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of options"
-                [ngClass]="{wrongAnsColor:question.color, ansColor:question.crct}">
-
-                <div class="ml-5 borderLeftStyle pr-2">A</div>
-                <div class="flex  justify-center items-center w-full ">{{question.name}}</div>
-
-            </div>
-        </div>
+    <div class="circle">
+      <h2 class="timer font-bold text-[2.5rem]">{{ timeLeft }}</h2>
     </div>
-    <div class="mt-6 flex justify-end w-3/4">
-        <button class="bottombtn" (click)="displayAnswer()">Lock Answer</button>
-        <button (click)="nextquestion()">next question</button>
-
+    <div class="">
+      <button
+        class="btn btn-primary btn-lg text-2xl text-black pause__btn w-[7rem]"
+        [ngClass]="{ startBtn: pauseFlag }"
+        (click)="pauseTimer()"
+      >
+        Pause
+      </button>
     </div>
+  </div>
+
+  <div class="p-5 w-[60%] max-h-max bg-white rounded-[2rem]">
+    <div class="question flex items-center justify-center text-3xl mb-5">
+      {{ currentSelectedQuestion }}
+    </div>
+    <!-- <div class="question flex items-center justify-center text-3xl mb-5">{{currentSelectedCategoryName}}</div> -->
+    <div
+      class="options grid grid-cols-2 gap-x-7 gap-y-12"
+      *ngIf="!correctAnswerFlag && !wrongAnswerFlag"
+    >
+      <div
+        class="borderstyle flex cursor-pointer"
+        #option
+        *ngFor="let question of options"
+        [ngClass]="{ colors: question.color }"
+        (click)="changeColor(question.id)"
+      >
+        <div class="ml-5 borderLeftStyle pr-2">{{ question.rome }}</div>
+        <div class="flex justify-center items-center w-full">
+          {{ question.name }}
+        </div>
+      </div>
+    </div>
+    <div
+      class="options grid grid-cols-2 gap-x-7 gap-y-12"
+      *ngIf="correctAnswerFlag"
+    >
+      <div
+        class="borderstyle flex cursor-pointer"
+        #option
+        *ngFor="let question of options"
+        [ngClass]="{ ansColor: question.color }"
+      >
+        <div class="ml-5 borderLeftStyle pr-2">{{ question.rome }}</div>
+        <div class="flex justify-center items-center w-full">
+          {{ question.name }}
+        </div>
+      </div>
+    </div>
+    <div
+      class="options grid grid-cols-2 gap-x-7 gap-y-12"
+      *ngIf="wrongAnswerFlag"
+    >
+      <div
+        class="borderstyle flex cursor-pointer"
+        #option
+        *ngFor="let question of options"
+        [ngClass]="{ wrongAnsColor: question.color, ansColor: question.crct }"
+      >
+        <div class="ml-5 borderLeftStyle pr-2">{{ question.rome }}</div>
+        <div class="flex justify-center items-center w-full">
+          {{ question.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-6 flex justify-end w-3/5">
+    <button
+      class="bottombtn"
+      (click)="displayAnswer()"
+      *ngIf="!correctAnswerFlag"
+      [disabled]="!optionclicked"
+    >
+      Lock Answer
+    </button>
+    <button
+      class="bottombtn"
+      (click)="nextquestion()"
+      *ngIf="correctAnswerFlag"
+    >
+      next question
+    </button>
+  </div>
+
+  <button class="absolute top-0 right-0 btnEnd m-2" routerLink="">
+    End Quiz
+  </button>
+
+  <div *ngIf="timeupFlag"
+    class="alert alert-warning alert-dismissible fade show top-0 absolute"
+    role="alert"
+  >
+    <i>Times up...!!</i> 
+    <button type="button" class="ml-2"  data-dismiss="alert">
+        <a href ="" class="bg-orange-100 " ><strong>move to home page</strong></a>
+    </button>
+  </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- <div class="borderstyle flex cursor-pointer" [ngClass]="{color:setColor}" (click)="setColor=!setColor">
     <div class="ml-5 borderLeftStyle pr-2">A</div>

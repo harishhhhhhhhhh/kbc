@@ -14,7 +14,7 @@ class questionController extends Controller
 
         // $result = DB::select(Db::raw('select category,GROUP_CONCAT(question,\':[\',option1,\',\',option2,\',\',option3,\',\',option4,\',\',correct,\']\') AS questions from questions group by category'));
         $results = DB::table('questions')
-    ->select('category', 'question', 'option1', 'option2', 'option3', 'option4', 'correct')
+    ->select('category', 'question', 'option1', 'option2', 'option3', 'option4', 'correct','id')
     ->orderBy('category')
     ->get();
 

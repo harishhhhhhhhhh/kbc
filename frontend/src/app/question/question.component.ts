@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { timestamp } from 'rxjs';
 import { ApiServiceService } from '../api-service.service';
 
 interface Question {
+  id : number;
   questionName: string;
   options: string[];
   correctAnswer : string;
@@ -19,7 +20,7 @@ interface Category {
   styleUrls: ['./question.component.css'],
 })
 export class QuestionComponent implements OnInit {
-  question: string = 'What will you choose from the below?';
+  question: any = 'What will you choose from the below?';
   timeLeft: number = 60;
   interval: any;
   timerStarted: boolean = false;
@@ -29,8 +30,10 @@ export class QuestionComponent implements OnInit {
   wrongAnswerFlag: boolean = false;
   startFlag: boolean = false;
   pauseFlag: boolean = false;
+  timeupFlag : boolean = false;
+  optionclicked :boolean = false;
 
-  constructor(private service: ApiServiceService) { }
+  constructor(private service: ApiServiceService,private cdr: ChangeDetectorRef) { }
 
   data: any;
   categories: Category[] = [];
@@ -46,6 +49,7 @@ export class QuestionComponent implements OnInit {
         const questionName = row.question;
         const options = [row.option1, row.option2, row.option3, row.option4];
         const answer  = row.correct;
+        const questionsId = row.id;
 
         let category = this.categories.find((c) => c.categoryName === categoryName);
 
@@ -54,24 +58,18 @@ export class QuestionComponent implements OnInit {
           this.categories.push(category);
         }
 
-        const question: Question = { questionName: questionName, options: options,correctAnswer :answer };
+        const question: Question = { id : questionsId,questionName: questionName, options: options,correctAnswer :answer };
         category.questions.push(question);
       });
 
       console.log("came", this.categories);
       this.totalCategories = this.categories.length;
+      this.nextquestion();
     })
+    
   }
 
-  options: any = [
-    { id: 0, name: 'sample1', crct: true, color: false },
-
-    { id: 1, name: 'option2', crct: false, color: false },
-
-    { id: 2, name: 'osample33', crct: false, color: false },
-
-    { id: 3, name: 'option4', crct: false, color: false },
-  ];
+  options: any;
   print(data: any) {
     console.log(data.name);
   }
@@ -85,7 +83,9 @@ export class QuestionComponent implements OnInit {
           this.timeLeft--;
         } else {
           // alert('entiki poooo');
-          this.timeLeft = 60;
+          this.timeupFlag  = true;
+    
+
         }
       }, 1000);
       this.timerStarted = true;
@@ -100,6 +100,7 @@ export class QuestionComponent implements OnInit {
   }
 
   changeColor(id: number) {
+    this.optionclicked=true;
     this.options.forEach((element: any) => {
       element.color = false;
       if (element.crct == true) {
@@ -112,7 +113,6 @@ export class QuestionComponent implements OnInit {
     this.selectedOption = id;
     console.log(this.crctOption);
   }
-
   displayAnswer() {
     if (this.selectedOption == this.crctOption) {
       this.correctAnswerFlag = true;
@@ -126,20 +126,65 @@ currentSelectedQuestion :any ="";
 currentSelectedCategory :any = " ";
 currentSelectedOptions : any = " ";
 currentSelectedCategoryName:any = "";
+currentSelectedCorrectAnswer : any ="";
 
+resetVariables(){
+  this.timeLeft= 60;
+  this.timerStarted= false;
+  this.selectedOption= -1;
+  this.crctOption;
+  this.correctAnswerFlag= false;
+  this.wrongAnswerFlag = false;
+  this.startFlag = false;
+  this.pauseFlag= false;
+  this.timeupFlag =false;
+  this.optionclicked= false;
+  this.options = [
+    { id: 0, name: '', crct: false, color: false,rome : 'A' },
+
+    { id: 1, name: '', crct: false, color: false,rome : 'B'},
+
+    { id: 2, name: '', crct: false, color: false,rome:'C' },
+
+    { id: 3, name: '', crct: false, color: false ,rome:'D'},
+  ];
+}
 nextquestion(){
    this.currentIndex = this.currentIndex % this.totalCategories;
   this.currentSelectedCategory = this.categories[this.currentIndex];
+  
 
   // // Randomly select a question from the current category
+  this.resetVariables();
+  clearInterval(this.interval);
+
+
   const randomQuestionIndex = Math.floor(Math.random() * this.currentSelectedCategory.questions.length);
   this.currentSelectedQuestion =this.currentSelectedCategory.questions[randomQuestionIndex].questionName;
+  this.currentSelectedCorrectAnswer=this.currentSelectedCategory.questions[randomQuestionIndex].correctAnswer;
   this.currentSelectedOptions  =this.currentSelectedCategory.questions[randomQuestionIndex].options;
   this.currentSelectedCategoryName = this.currentSelectedCategory.categoryName;
 
+  this.options = [
+    { id: 0, name: this.currentSelectedOptions[0], crct: false, color: false,rome : 'A' },
+
+    { id: 1, name: this.currentSelectedOptions[1], crct: false, color: false,rome : 'B' },
+
+    { id: 2, name: this.currentSelectedOptions[2], crct: false, color: false ,rome : 'C'},
+
+    { id: 3, name: this.currentSelectedOptions[3], crct: false, color: false,rome : 'D' },
+  ];
+
+  this.options.forEach((ele : any)=>{
+      if(ele.name === this.currentSelectedCorrectAnswer)
+      {
+        ele.crct = true;
+      }
+  })
+
   console.log( this.currentSelectedCategory);
 	console.log(this.currentSelectedQuestion);
-	console.log(this.currentSelectedOptions);
+	console.log("options",this.currentSelectedOptions);
   this.currentIndex++;
 }
 
