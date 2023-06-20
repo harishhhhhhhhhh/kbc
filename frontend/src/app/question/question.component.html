@@ -4,12 +4,10 @@
             <div class="">
                 <img class="w-[8rem] cursor-pointer" src=" /assets/lifeline1bgremoved.png" (click)="fiftyfifty()"
                     *ngIf="!fiftyfiftyUsed">
-                <img class="w-[8rem] cursor-pointer" src=" /assets/lifeline1cross.png" (click)="fiftyfifty()"
-                    *ngIf="fiftyfiftyUsed">
-                <img class="w-[8rem] cursor-pointer" src=" /assets/audiencelifeline.png" (click)="audiencePole()"
+                <img class="w-[8rem] cursor-pointer" src=" /assets/lifeline1cross.png" *ngIf="fiftyfiftyUsed">
+                <img class="w-[9rem] cursor-pointer" src=" /assets/audiencelifeline.png" (click)="audiencePole()"
                     *ngIf="!audiencePoleUsed">
-                <img class="w-[8rem] cursor-pointer" src=" /assets/audiencelifelineused.png" (click)="audiencePole()"
-                    *ngIf="audiencePoleUsed">
+                <img class="w-[9rem] cursor-pointer" src=" /assets/audiencelifelineused.png" *ngIf="audiencePoleUsed">
             </div>
         </div>
         <div class="w-full flex justify-center items-start flex-col">

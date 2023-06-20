@@ -1,5 +1,9 @@
 .bgimage {
-  background-image: url("/assets/homebg.png");
+  margin: 0;
+  overflow: hidden;
+  background: #222;
+  background: radial-gradient(circle, #6f40ec 0%, #1d0f52 100%);
+  min-height: 100vh;
 }
 
 .borderstyle {
@@ -71,7 +75,7 @@
   cursor: pointer;
 }
 
-.btnEnd{
+.btnEnd {
   background-color: white;
   font-size: 1.5em;
   border-radius: 12px;
@@ -79,8 +83,6 @@
   cursor: pointer;
   background-color: rgb(243, 49, 49);
 }
-
-
 
 .bottombtn:hover {
   --tw-bg-opacity: 1;
@@ -103,7 +105,6 @@ button {
   background-color: rgb(243, 49, 49);
 }
 
-
 .overlay {
   position: fixed;
   top: 0;
@@ -116,5 +117,4 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
