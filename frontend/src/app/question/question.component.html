@@ -32,61 +32,62 @@
 
 
             <div class="p-5 w-[80%] max-h-max bg-white rounded-[2rem] ">
-                <div class="question flex items-center justify-center text-3xl mb-5">
+                <div class="question flex items-center justify-center text-3xl">
                     {{ currentSelectedQuestion }}
                 </div>
-                <!-- <div class="question flex items-center justify-center text-3xl mb-5">{{currentSelectedCategoryName}}</div> -->
-                <div class="options grid grid-cols-2 gap-x-7 gap-y-12" *ngIf="!correctAnswerFlag && !wrongAnswerFlag">
-                    <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of options"
-                        [ngClass]="{ colors: question.color }" (click)="changeColor(question.id)">
-                        <div class="ml-5 borderLeftStyle pr-2">{{ question.rome }}</div>
-                        <div class="flex justify-center items-center w-full">
-                            {{ question.name }}
-                        </div>
-                    </div>
-                </div>
-                <div class="options grid grid-cols-2 gap-x-7 gap-y-12" *ngIf="correctAnswerFlag">
-                    <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of options"
-                        [ngClass]="{ ansColor: question.color }">
-                        <div class="ml-5 borderLeftStyle pr-2">{{ question.rome }}</div>
-                        <div class="flex justify-center items-center w-full">
-                            {{ question.name }}
-                        </div>
-                    </div>
-                </div>
-                <div class="options grid grid-cols-2 gap-x-7 gap-y-12" *ngIf="wrongAnswerFlag">
-                    <div class="borderstyle flex cursor-pointer" #option *ngFor="let question of options"
-                        [ngClass]="{ wrongAnsColor: question.color, ansColor: question.crct }">
-                        <div class="ml-5 borderLeftStyle pr-2">{{ question.rome }}</div>
-                        <div class="flex justify-center items-center w-full">
-                            {{ question.name }}
-                        </div>
+                <!-- <div class="question flex items-center justify-center text-3xl mb-5">{{currentSelectedCategoryName}} -->
+            <!-- </div> -->
+            <div class="options grid grid-cols-2 gap-x-7 gap-y-12 mt-5" [hidden]="displayOptions"
+                *ngIf="!correctAnswerFlag && !wrongAnswerFlag">
+                <div class="borderstyle flex cursor-pointer" #option *ngFor="let option of options"
+                    [ngClass]="{ colors: option.color }" (click)="changeColor(option.id)">
+                    <div class="ml-5 borderLeftStyle pr-2">{{ option.rome }}</div>
+                    <div class="flex justify-center items-center w-full">
+                        {{ option.name }}
                     </div>
                 </div>
             </div>
-
-            <div class="mt-6 flex justify-end w-3/5 ml-[19.5%]">
-                <button class="bottombtn" (click)="displayAnswer()" *ngIf="!correctAnswerFlag"
-                    [disabled]="!optionclicked">
-                    Lock Answer
-                </button>
-                <button class="bottombtn" (click)="nextquestion()" *ngIf="correctAnswerFlag">
-                    next question
-                </button>
+            <div class="options grid grid-cols-2 gap-x-7 gap-y-12 mt-5" *ngIf="correctAnswerFlag">
+                <div class="borderstyle flex cursor-pointer" #option *ngFor="let option of options"
+                    [ngClass]="{ ansColor: option.color }">
+                    <div class="ml-5 borderLeftStyle pr-2">{{ option.rome }}</div>
+                    <div class="flex justify-center items-center w-full">
+                        {{ option.name }}
+                    </div>
+                </div>
+            </div>
+            <div class="options grid grid-cols-2 gap-x-7 gap-y-12 mt-5" *ngIf="wrongAnswerFlag">
+                <div class="borderstyle flex cursor-pointer" #option *ngFor="let option of options"
+                    [ngClass]="{ wrongAnsColor: option.color, ansColor: option.crct }">
+                    <div class="ml-5 borderLeftStyle pr-2">{{ option.rome }}</div>
+                    <div class="flex justify-center items-center w-full">
+                        {{ option.name }}
+                    </div>
+                </div>
             </div>
         </div>
 
+        <div class="mt-6 flex justify-end w-3/5 ml-[19.5%]" [hidden]="wrongAnswerFlag">
+            <button class="bottombtn" (click)="displayAnswer()" *ngIf="!correctAnswerFlag" [disabled]="!optionclicked">
+                Lock Answer
+            </button>
+            <button class="bottombtn" (click)="nextquestion()" *ngIf="correctAnswerFlag">
+                next question
+            </button>
+        </div>
     </div>
-    <button class="absolute top-0 right-0 btnEnd m-2" routerLink="">
-        End Quiz
-    </button>
 
-    <div *ngIf="timeupFlag" class="alert alert-warning alert-dismissible fade show top-0 absolute" role="alert">
-        <i>Times up...!!</i>
-        <button type="button" class="ml-2" data-dismiss="alert">
-            <a href="" class="bg-orange-100 "><strong>move to home page</strong></a>
-        </button>
-    </div>
+</div>
+<button class="absolute  top-2 right-5 btnEnd m-2" routerLink="">
+    End Quiz
+</button>
+
+<div *ngIf="timeupFlag" class="alert alert-warning alert-dismissible fade show top-0 absolute" role="alert">
+    <i>Times up...!!</i>
+    <button type="button" class="ml-2" data-dismiss="alert">
+        <a href="" class="bg-orange-100 "><strong>End Quiz</strong></a>
+    </button>
+</div>
 
 
 </div>
