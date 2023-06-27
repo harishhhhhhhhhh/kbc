@@ -33,7 +33,7 @@ export class QuestionComponent implements OnInit {
   optionclicked: boolean = false;
   fiftyfiftyUsed: boolean = false;
   audiencePoleUsed: boolean = false;
-  displayOptions: boolean = true;
+  displayOptions: boolean = false;
 
   constructor(
     private service: ApiServiceService,
@@ -85,7 +85,7 @@ export class QuestionComponent implements OnInit {
   }
 
   startTimer() {
-    this.displayOptions = false;
+    this.displayOptions = true;
     this.startFlag = true;
     this.pauseFlag = false;
     if (!this.timerStarted) {
@@ -180,7 +180,7 @@ export class QuestionComponent implements OnInit {
     this.pauseFlag = false;
     this.timeupFlag = false;
     this.optionclicked = false;
-    this.displayOptions = true;
+    this.displayOptions = false;
     this.options = [
       { id: 0, name: '', crct: false, color: false, rome: 'A' },
 
