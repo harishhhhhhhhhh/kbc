@@ -20,7 +20,7 @@ interface Category {
   styleUrls: ['./question.component.css'],
 })
 export class QuestionComponent implements OnInit {
-  timeLeft: number = 60;
+  timeLeft: number = 40;
   interval: any;
   timerStarted: boolean = false;
   selectedOption: number = -1;
@@ -33,6 +33,7 @@ export class QuestionComponent implements OnInit {
   optionclicked: boolean = false;
   fiftyfiftyUsed: boolean = false;
   audiencePoleUsed: boolean = false;
+  displayOptions: boolean = true;
 
   constructor(
     private service: ApiServiceService,
@@ -84,6 +85,7 @@ export class QuestionComponent implements OnInit {
   }
 
   startTimer() {
+    this.displayOptions = false;
     this.startFlag = true;
     this.pauseFlag = false;
     if (!this.timerStarted) {
@@ -168,7 +170,7 @@ export class QuestionComponent implements OnInit {
   currentSelectedCorrectAnswer: any = '';
 
   resetVariables() {
-    this.timeLeft = 60;
+    this.timeLeft = 40;
     this.timerStarted = false;
     this.selectedOption = -1;
     this.crctOption;
@@ -178,6 +180,7 @@ export class QuestionComponent implements OnInit {
     this.pauseFlag = false;
     this.timeupFlag = false;
     this.optionclicked = false;
+    this.displayOptions = true;
     this.options = [
       { id: 0, name: '', crct: false, color: false, rome: 'A' },
 
