@@ -7,10 +7,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { QuestionComponent } from './question/question.component';
+import { NgxTypedJsModule } from 'ngx-typed-js';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, QuestionComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule,HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    NgxTypedJsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
