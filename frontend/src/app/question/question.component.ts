@@ -47,6 +47,7 @@ export class QuestionComponent implements OnInit {
   categories: Category[] = [];
   totalCategories: any;
   ngOnInit() {
+    
     this.service.getQuestions().subscribe((res: any) => {
       console.log(res);
       const responseData = res;
@@ -79,6 +80,12 @@ export class QuestionComponent implements OnInit {
       console.log('came', this.categories);
       this.totalCategories = this.categories.length;
       this.nextquestion();
+    });
+  }
+
+  setQuestionStatus(id : any){
+    this.service.deleteQuestion(id).subscribe((res)=>{
+      console.log("question status updated");
     });
   }
 
@@ -171,6 +178,7 @@ export class QuestionComponent implements OnInit {
   currentSelectedOptions: any = ' ';
   currentSelectedCategoryName: any = '';
   currentSelectedCorrectAnswer: any = '';
+  currentSelectedQuestionId : any = '';
 
   resetVariables() {
     this.timeLeft = 40;
@@ -199,12 +207,20 @@ export class QuestionComponent implements OnInit {
   @ViewChild(DisplayNumberComponent) child!: DisplayNumberComponent;
 
   nextquestion() {
+<<<<<<< Updated upstream
     this.child.turnOffOrOn();
     this.currentQuestionNumber++;
     this.overlayDisplayFlag = false;
     setTimeout(() => {
       this.overlayDisplayFlag = true;
     }, 2600);
+=======
+
+    if(this.totalCategories == 0)
+    {
+      alert("no questions available to display");
+    }
+>>>>>>> Stashed changes
     this.currentIndex = this.currentIndex % this.totalCategories;
     this.currentSelectedCategory = this.categories[this.currentIndex];
 
@@ -212,11 +228,13 @@ export class QuestionComponent implements OnInit {
     this.resetVariables();
     clearInterval(this.interval);
 
+   
     const randomQuestionIndex = Math.floor(
       Math.random() * this.currentSelectedCategory.questions.length
     );
-    this.currentSelectedQuestion =
-      this.currentSelectedCategory.questions[randomQuestionIndex].questionName;
+    this.currentSelectedQuestion =this.currentSelectedCategory.questions[randomQuestionIndex].questionName;
+    
+    this.currentSelectedQuestionId =this.currentSelectedCategory.questions[randomQuestionIndex].id;
     this.currentSelectedCorrectAnswer =
       this.currentSelectedCategory.questions[randomQuestionIndex].correctAnswer;
     this.currentSelectedOptions =
@@ -265,8 +283,17 @@ export class QuestionComponent implements OnInit {
     });
 
     // console.log(this.currentSelectedCategory);
-    // console.log(this.currentSelectedQuestion);
+    console.log("after splice",this.categories);
+    // console.log("questns dd",this.currentSelectedQuestionId);
     // console.log('options', this.currentSelectedOptions);
+    this.setQuestionStatus(this.currentSelectedQuestionId);
+    this.categories[this.currentIndex].questions.splice(randomQuestionIndex,1);
+    if(this.currentSelectedCategory.questions.length == 0)
+    { 
+        console.log("wemptyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",this.currentSelectedCategory);
+        this.categories.splice(this.currentIndex,1);
+        this.totalCategories -=1;
+    }
     this.currentIndex++;
   }
 }

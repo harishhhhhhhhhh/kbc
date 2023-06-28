@@ -14,4 +14,8 @@ export class ApiServiceService {
   getQuestions():Observable<any>{
     return this.http.get(`${this.api}/getQuestions`);
   }
+  
+  deleteQuestion(qid : any){
+    return this.http.put(`${this.api}/updateQuestionStatus`,{id :qid });
+  }
 }

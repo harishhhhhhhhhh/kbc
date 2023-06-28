@@ -15,12 +15,25 @@ class questionController extends Controller
         // $result = DB::select(Db::raw('select category,GROUP_CONCAT(question,\':[\',option1,\',\',option2,\',\',option3,\',\',option4,\',\',correct,\']\') AS questions from questions group by category'));
         $results = DB::table('questions')
     ->select('category', 'question', 'option1', 'option2', 'option3', 'option4', 'correct','id')
+    ->where('visible','=',0)
     ->orderBy('category')
     ->get();
 
-
-       
     
     return response()->json($results);
     }
+
+    function updateQuestionStatus(Request $request){
+
+        $question_id = $request->input('id');
+        DB::table('questions')
+        ->where('id','=',$question_id)
+        ->update(['visible'=>1]);
+
+    }
+
+
+    
 }
+
+

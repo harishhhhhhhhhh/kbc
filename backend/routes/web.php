@@ -15,3 +15,4 @@ use App\Http\Controllers\questionController;
 */
 
 Route::get('/getQuestions', [questionController::class,'getQuestions']);
+Route::put('/updateQuestionStatus', [questionController::class,'updateQuestionStatus']);
