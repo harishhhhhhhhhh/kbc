@@ -8,9 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { QuestionComponent } from './question/question.component';
 import { NgxTypedJsModule } from 'ngx-typed-js';
+import { DisplayNumberComponent } from './display-number/display-number.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, QuestionComponent],
+  declarations: [AppComponent, HomeComponent, QuestionComponent, DisplayNumberComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { timestamp } from 'rxjs';
 import { ApiServiceService } from '../api-service.service';
+import { DisplayNumberComponent } from '../display-number/display-number.component';
 
 interface Question {
   id: number;
@@ -34,6 +35,8 @@ export class QuestionComponent implements OnInit {
   fiftyfiftyUsed: boolean = false;
   audiencePoleUsed: boolean = false;
   displayOptions: boolean = false;
+  overlayDisplayFlag: boolean = true;
+  currentQuestionNumber: number = 0;
 
   constructor(
     private service: ApiServiceService,
@@ -181,6 +184,7 @@ export class QuestionComponent implements OnInit {
     this.timeupFlag = false;
     this.optionclicked = false;
     this.displayOptions = false;
+
     this.options = [
       { id: 0, name: '', crct: false, color: false, rome: 'A' },
 
@@ -191,7 +195,16 @@ export class QuestionComponent implements OnInit {
       { id: 3, name: '', crct: false, color: false, rome: 'D' },
     ];
   }
+
+  @ViewChild(DisplayNumberComponent) child!: DisplayNumberComponent;
+
   nextquestion() {
+    this.child.turnOffOrOn();
+    this.currentQuestionNumber++;
+    this.overlayDisplayFlag = false;
+    setTimeout(() => {
+      this.overlayDisplayFlag = true;
+    }, 2600);
     this.currentIndex = this.currentIndex % this.totalCategories;
     this.currentSelectedCategory = this.categories[this.currentIndex];
 
