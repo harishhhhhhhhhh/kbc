@@ -21,6 +21,7 @@
   height: 100%;
   backface-visibility: hidden;
   position: absolute;
+
 }
 
 .back {
@@ -32,6 +33,7 @@
   background: #390f4e;
   color: #333;
   transform: rotateY(180deg);
+  
 }
 /* .container {
   display: flex;
@@ -99,6 +101,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: url('/assets/youfire.gif');
+  background-size: cover;
 }
 
 /*logo*/
@@ -758,3 +762,29 @@
     transform: rotateZ(2turn);
   }
 }
+/* \\\///////////////////
+
+*/
+
+.text {
+  text-transform: uppercase;
+  /* color : rgba(146, 145, 145, 0); */
+  /* background: url('/assets/burn.jpg'); */
+  background-clip: text;
+  background-size: cover;
+  animation: fire 15s linear infinite;
+
+}
+
+@keyframes fire{
+   0%{
+    background-position: left 0 top 25px;
+   }
+   50%{
+    background-position: left 130px top -35px;
+   }
+   100%{
+    background-position: left 250px top 0;
+   }
+}
+

@@ -207,20 +207,17 @@ export class QuestionComponent implements OnInit {
   @ViewChild(DisplayNumberComponent) child!: DisplayNumberComponent;
 
   nextquestion() {
-<<<<<<< Updated upstream
     this.child.turnOffOrOn();
     this.currentQuestionNumber++;
     this.overlayDisplayFlag = false;
     setTimeout(() => {
       this.overlayDisplayFlag = true;
-    }, 2600);
-=======
-
+    }, 4000);
     if(this.totalCategories == 0)
     {
       alert("no questions available to display");
     }
->>>>>>> Stashed changes
+
     this.currentIndex = this.currentIndex % this.totalCategories;
     this.currentSelectedCategory = this.categories[this.currentIndex];
 
@@ -286,7 +283,7 @@ export class QuestionComponent implements OnInit {
     console.log("after splice",this.categories);
     // console.log("questns dd",this.currentSelectedQuestionId);
     // console.log('options', this.currentSelectedOptions);
-    this.setQuestionStatus(this.currentSelectedQuestionId);
+    // this.setQuestionStatus(this.currentSelectedQuestionId);
     this.categories[this.currentIndex].questions.splice(randomQuestionIndex,1);
     if(this.currentSelectedCategory.questions.length == 0)
     { 
