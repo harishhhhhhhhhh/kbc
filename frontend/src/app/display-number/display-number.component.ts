@@ -23,6 +23,6 @@ export class DisplayNumberComponent implements OnInit {
     console.log('hey theere');
     setTimeout(() => {
       this.addingClassFlag = false;
-    }, 4000);
+    }, 2600);
   }
 }
