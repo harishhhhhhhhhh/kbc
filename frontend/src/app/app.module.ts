@@ -9,9 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { QuestionComponent } from './question/question.component';
 import { NgxTypedJsModule } from 'ngx-typed-js';
 import { DisplayNumberComponent } from './display-number/display-number.component';
+import { AlertcomponentComponent } from './alertcomponent/alertcomponent.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, QuestionComponent, DisplayNumberComponent],
+  declarations: [AppComponent, HomeComponent, QuestionComponent, DisplayNumberComponent, AlertcomponentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

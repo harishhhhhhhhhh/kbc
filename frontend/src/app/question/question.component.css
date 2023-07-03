@@ -1,3 +1,17 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.781);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .bgimage {
   margin: 0;
   overflow: hidden;
@@ -119,9 +133,24 @@ button {
 }
 /* ///hover effect of images
  */
- .hover-item {
+.hover-item {
   transition: 0.3s;
 }
 .hover-item:hover {
   transform: translate(0, -10px);
+}
+
+/* fade in transition */
+
+.source {
+  opacity: 1;
+  transition: opacity 2s ease-in;
+}
+
+.nofade {
+  opacity: 1;
+}
+
+.fade {
+  opacity: 0;
 }

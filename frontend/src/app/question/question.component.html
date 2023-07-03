@@ -1,14 +1,22 @@
 <app-display-number [hidden]="overlayDisplayFlag" [quesNumber]="currentQuestionNumber" />
+<app-alertcomponent [hidden]="!audiencePollClickedFlag" (onBtnClicked)="onAudienceBtnClicked($event)"
+    [image]="'assets/audiencelifeline.png'" />
+<div class="absolute overlay " *ngIf="fiftyfityClickedFlag">
+    <div class=" w-[25rem] h-[12rem] flex items-center justify-center rounded-lg ">
+        <img src="/assets/lifeline1bgremoved.png" />
+    </div>
+
+</div>
 
 <div class="w-screen h-screen flex flex-col items-center justify-center bgimage bg-gray-800 relative">
     <div class="flex justify-center items-center w-screen">
         <div class="flex basis-[30%]  items-center justify-center">
             <div class="">
-                <img class="w-[8rem] cursor-pointer hover-item" src=" /assets/lifeline1bgremoved.png" (click)="fiftyfifty()"
-                    *ngIf="!fiftyfiftyUsed">
-                <img class="w-[8rem] cursor-pointer " src=" /assets/lifeline1cross.png" *ngIf="fiftyfiftyUsed">
-                <img class="w-[9rem] cursor-pointer hover-item" src=" /assets/audiencelifeline.png" (click)="audiencePole()"
-                    *ngIf="!audiencePoleUsed">
+                <img class="w-[9rem] cursor-pointer hover-item" src=" /assets/lifeline1bgremoved.png"
+                    (click)="fiftyfifty()" *ngIf="!fiftyfiftyUsed">
+                <img class="w-[9rem] cursor-pointer " src=" /assets/lifeline1cross.png" *ngIf="fiftyfiftyUsed">
+                <img class="w-[9rem] cursor-pointer hover-item" src=" /assets/audiencelifeline.png"
+                    (click)="audiencePole()" *ngIf="!audiencePoleUsed">
                 <img class="w-[9rem] cursor-pointer" src=" /assets/audiencelifelineused.png" *ngIf="audiencePoleUsed">
             </div>
         </div>
@@ -99,13 +107,16 @@
         End Quiz
     </button>
 
-    <div *ngIf="timeupFlag" class="alert alert-warning alert-dismissible fade show top-0 absolute italic" role="alert">
+    <!-- <div *ngIf="timeupFlag" class="alert alert-warning alert-dismissible fade show top-0 absolute italic" role="alert">
         <i>Times up...!!</i>
         <button type="button" class="ml-2 " data-dismiss="alert">
             <a href="" class="bg-orange-100"><strong>End Quiz</strong></a>
         </button>
-    </div>
+    </div> -->
 
+
+    <app-alertcomponent [hidden]="!timeupFlag" (onBtnClicked)="onTimeOutClose($event)"
+        [image]="'assets/timeupbg.gif'" />
 
 </div>
 

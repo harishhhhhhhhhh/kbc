@@ -35,23 +35,25 @@ export class QuestionComponent implements OnInit {
   fiftyfiftyUsed: boolean = false;
   audiencePoleUsed: boolean = false;
   displayOptions: boolean = false;
-  overlayDisplayFlag: boolean = true;
+  overlayDisplayFlag: boolean = false;
   currentQuestionNumber: number = 0;
-  clapInterval : any;
+  clapInterval: any;
+  fiftyfityClickedFlag: boolean = false;
+  audiencePollClickedFlag: boolean = false;
+
   private clockaudio = new Audio();
   private correctAnsweraudio = new Audio();
   private audienceClapaudio = new Audio();
   private optionLockaudio = new Audio();
   private optionClickSuspenceaudio = new Audio();
   private wrongAnsweraudio = new Audio();
-  private  clockAudioSrc= '/assets/audio/Kbc Clock.mp3';
-  private  correctAnsweraudioSrc= '/assets/audio/Kbc Correct Answer.mp3';
-  private  audienceClapaudioSrc= '/assets/audio/KBC  Audience Clapping.mp3';
-  private  optionLockaudioSrc= '/assets/audio/Kbc Option Lock Tune.mp3';
-  private  optionClickSuspenceaudioSrc= '/assets/audio/Kbc suspense Amitabh Bacchan.mp3';
-  private  wrongAnsweraudioSrc= '/assets/audio/Kbc Galat Jawab.mp3';
-
-  
+  private clockAudioSrc = '/assets/audio/Kbc Clock.mp3';
+  private correctAnsweraudioSrc = '/assets/audio/Kbc Correct Answer.mp3';
+  private audienceClapaudioSrc = '/assets/audio/KBC  Audience Clapping.mp3';
+  private optionLockaudioSrc = '/assets/audio/Kbc Option Lock Tune.mp3';
+  private optionClickSuspenceaudioSrc =
+    '/assets/audio/Kbc suspense Amitabh Bacchan.mp3';
+  private wrongAnsweraudioSrc = '/assets/audio/Kbc Galat Jawab.mp3';
 
   constructor(
     private service: ApiServiceService,
@@ -104,7 +106,7 @@ export class QuestionComponent implements OnInit {
       this.nextquestion();
     });
   }
-  
+
   setQuestionStatus(id: any) {
     this.service.deleteQuestion(id).subscribe((res) => {
       console.log('question status updated');
@@ -128,7 +130,7 @@ export class QuestionComponent implements OnInit {
           // alert('entiki poooo');
           this.timeupFlag = true;
         }
-      }, 1000);
+      }, 100);
       this.timerStarted = true;
     }
     this.clockaudio.play();
@@ -171,18 +173,20 @@ export class QuestionComponent implements OnInit {
       this.clapInterval = setTimeout(() => {
         this.audienceClapaudio.play();
       }, 1500);
-      
     } else {
       this.correctAnswerFlag = false;
       this.wrongAnswerFlag = true;
       this.wrongAnsweraudio.play();
     }
     this.pauseTimer();
-    
   }
 
   //fifty fifty life line
   fiftyfifty() {
+    this.fiftyfityClickedFlag = true;
+    setTimeout(() => {
+      this.fiftyfityClickedFlag = false;
+    }, 3000);
     var incorrectOptions: any = [];
     this.options.forEach((ele: any) => {
       if (!ele.crct) {
@@ -208,6 +212,8 @@ export class QuestionComponent implements OnInit {
   //audience life line using
   audiencePole() {
     this.audiencePoleUsed = true;
+    this.audiencePollClickedFlag = true;
+    this.pauseTimer();
   }
 
   currentIndex: any = 0;
@@ -335,6 +341,11 @@ export class QuestionComponent implements OnInit {
     this.currentIndex++;
   }
 
-
-  
+  onAudienceBtnClicked(value: boolean) {
+    this.audiencePollClickedFlag = value;
+  }
+  onTimeOutClose(value: boolean) {
+    this.timeupFlag = value;
+    this.pauseTimer();
+  }
 }
