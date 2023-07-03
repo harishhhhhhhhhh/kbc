@@ -37,11 +37,34 @@ export class QuestionComponent implements OnInit {
   displayOptions: boolean = false;
   overlayDisplayFlag: boolean = true;
   currentQuestionNumber: number = 0;
+  clapInterval : any;
+  private clockaudio = new Audio();
+  private correctAnsweraudio = new Audio();
+  private audienceClapaudio = new Audio();
+  private optionLockaudio = new Audio();
+  private optionClickSuspenceaudio = new Audio();
+  private wrongAnsweraudio = new Audio();
+  private  clockAudioSrc= '/assets/audio/Kbc Clock.mp3';
+  private  correctAnsweraudioSrc= '/assets/audio/Kbc Correct Answer.mp3';
+  private  audienceClapaudioSrc= '/assets/audio/KBC  Audience Clapping.mp3';
+  private  optionLockaudioSrc= '/assets/audio/Kbc Option Lock Tune.mp3';
+  private  optionClickSuspenceaudioSrc= '/assets/audio/Kbc suspense Amitabh Bacchan.mp3';
+  private  wrongAnsweraudioSrc= '/assets/audio/Kbc Galat Jawab.mp3';
+
+  
 
   constructor(
     private service: ApiServiceService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    this.clockaudio.src = this.clockAudioSrc;
+    this.correctAnsweraudio.src = this.correctAnsweraudioSrc;
+    this.audienceClapaudio.src = this.audienceClapaudioSrc;
+    this.optionLockaudio.src = this.optionLockaudioSrc;
+    this.optionClickSuspenceaudio.src = this.optionClickSuspenceaudioSrc;
+    this.optionClickSuspenceaudio.loop = true;
+    this.wrongAnsweraudio.src = this.wrongAnsweraudioSrc;
+  }
 
   data: any;
   categories: Category[] = [];
@@ -81,7 +104,7 @@ export class QuestionComponent implements OnInit {
       this.nextquestion();
     });
   }
-
+  
   setQuestionStatus(id: any) {
     this.service.deleteQuestion(id).subscribe((res) => {
       console.log('question status updated');
@@ -108,9 +131,11 @@ export class QuestionComponent implements OnInit {
       }, 1000);
       this.timerStarted = true;
     }
+    this.clockaudio.play();
   }
 
   pauseTimer() {
+    this.clockaudio.pause();
     this.startFlag = false;
     this.pauseFlag = true;
     this.timerStarted = false;
@@ -129,17 +154,31 @@ export class QuestionComponent implements OnInit {
     this.options[id].color = !this.options[id].color;
 
     this.selectedOption = id;
+    this.pauseTimer();
+    this.optionLockaudio.play();
+    setTimeout(() => {
+      this.optionClickSuspenceaudio.play();
+    }, 4000);
     console.log(this.crctOption);
   }
+
   displayAnswer() {
+    this.optionClickSuspenceaudio.pause();
+    this.optionClickSuspenceaudio.loop = false;
     if (this.selectedOption == this.crctOption) {
       this.correctAnswerFlag = true;
+      this.correctAnsweraudio.play();
+      this.clapInterval = setTimeout(() => {
+        this.audienceClapaudio.play();
+      }, 1500);
+      
     } else {
       this.correctAnswerFlag = false;
       this.wrongAnswerFlag = true;
+      this.wrongAnsweraudio.play();
     }
-
     this.pauseTimer();
+    
   }
 
   //fifty fifty life line
@@ -211,7 +250,7 @@ export class QuestionComponent implements OnInit {
     this.overlayDisplayFlag = false;
     setTimeout(() => {
       this.overlayDisplayFlag = true;
-    }, 2600);
+    }, 3000);
     if (this.totalCategories == 0) {
       alert('no questions available to display');
     }
@@ -222,6 +261,7 @@ export class QuestionComponent implements OnInit {
     // // Randomly select a question from the current category
     this.resetVariables();
     clearInterval(this.interval);
+    clearInterval(this.clapInterval);
 
     const randomQuestionIndex = Math.floor(
       Math.random() * this.currentSelectedCategory.questions.length
@@ -294,4 +334,7 @@ export class QuestionComponent implements OnInit {
     }
     this.currentIndex++;
   }
+
+
+  
 }

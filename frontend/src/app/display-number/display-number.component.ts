@@ -7,6 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DisplayNumberComponent implements OnInit {
   addingClassFlag: boolean = false;
+  private flipaudio = new Audio();
+  private  flipAudioSrc= '/assets/audio/flip.mp3';
+
+
+  constructor(){
+    this.flipaudio.src = this.flipAudioSrc;
+  }
+
   @Input('quesNumber') questionNumber: number = 1;
   ngOnInit(): void {
     // let angle = 0;
@@ -19,10 +27,14 @@ export class DisplayNumberComponent implements OnInit {
   turnOffOrOn() {
     setTimeout(() => {
       this.addingClassFlag = true;
-    }, 600);
+    }, 1000);
     console.log('hey theere');
     setTimeout(() => {
       this.addingClassFlag = false;
-    }, 2600);
+    }, 3000);
+    this.flipaudio.play();
+
   }
+
+
 }

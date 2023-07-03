@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ApiServiceService } from '../api-service.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ApiServiceService } from '../api-service.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   name: string = '';
   private audio = new Audio();
   private audioSrc = '/assets/audio/Kbc Theme.mp3';
@@ -19,6 +19,19 @@ export class HomeComponent implements OnInit {
     this.service.getQuestions().subscribe((res: any) => {
       console.log(res);
     });
+  }
+  @HostListener('window:click')
+  onWindowClick() {
+    this.playAudio();
+  }
+
+  playAudio() {
     this.audio.play();
+    this.audio.loop = true;
+  }
+
+  ngOnDestroy() {
+    this.audio.pause();
+    this.audio.loop = false;
   }
 }
