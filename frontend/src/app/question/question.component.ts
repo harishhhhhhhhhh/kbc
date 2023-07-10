@@ -130,7 +130,7 @@ export class QuestionComponent implements OnInit {
           // alert('entiki poooo');
           this.timeupFlag = true;
         }
-      }, 100);
+      }, 1000);
       this.timerStarted = true;
     }
     this.clockaudio.play();

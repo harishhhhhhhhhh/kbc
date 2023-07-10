@@ -18,4 +18,8 @@ export class ApiServiceService {
   deleteQuestion(qid : any){
     return this.http.put(`${this.api}/updateQuestionStatus`,{id :qid });
   }
+
+  sendFile(uploadData:FormData){
+    return this.http.post(`${this.api}/upload`, {file:uploadData});
+  }
 }
