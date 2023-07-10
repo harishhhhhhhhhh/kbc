@@ -3,14 +3,30 @@
 }
 
 @keyframes rainbow {
-  0% { box-shadow: 0 0 10px 10px red; }
-  14% { box-shadow: 0 0 10px 10px orange; }
-  28% { box-shadow: 0 0 10px 10px yellow; }
-  42% { box-shadow: 0 0 10px 10px green; }
-  57% { box-shadow: 0 0 10px 10px blue; }
-  71% { box-shadow: 0 0 10px 10px indigo; }
-  85% { box-shadow: 0 0 10px 10px violet; }
-  100% { box-shadow: 0 0 10px 10px red; }
+  0% {
+    box-shadow: 0 0 10px 10px red;
+  }
+  14% {
+    box-shadow: 0 0 10px 10px orange;
+  }
+  28% {
+    box-shadow: 0 0 10px 10px yellow;
+  }
+  42% {
+    box-shadow: 0 0 10px 10px green;
+  }
+  57% {
+    box-shadow: 0 0 10px 10px blue;
+  }
+  71% {
+    box-shadow: 0 0 10px 10px indigo;
+  }
+  85% {
+    box-shadow: 0 0 10px 10px violet;
+  }
+  100% {
+    box-shadow: 0 0 10px 10px red;
+  }
 }
 .overlay {
   position: fixed;
@@ -30,20 +46,27 @@
   margin: 0;
   overflow: hidden;
   background: #222;
-  background: url('/assets/bg.jpg');
+  background: radial-gradient(circle, #e6e8eb 0%, #4f5456 100%);
   min-height: 100vh;
+}
+
+.questionBorderStyle {
+  border: solid;
+  border-width: 2px 4px;
+  border-radius: 10px 40px;
+  border-color: rgb(241, 139, 23);
 }
 
 .borderstyle {
   font-size: 1.74rem;
-  border: dashed;
+  border: solid;
   border-width: 1px 4px;
   border-radius: 10px 40px;
-  border-color: goldenrod;
+  border-color: rgb(241, 139, 23);
 }
 
 .borderLeftStyle {
-  border: dotted goldenrod;
+  border: solid rgb(241, 139, 23);
   border-width: 0 2px 0 0;
 }
 
@@ -96,7 +119,7 @@
 }
 
 .bottombtn {
-  background-color: white;
+  background-color: #6f40ec;
   font-size: 1.5em;
   border-radius: 12px;
   padding: 0 3.5rem;
@@ -113,12 +136,12 @@
 
 .bottombtn:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+  background-color: #141e63;
 }
 
 .startBtn {
-  border: 5px solid red;
-  border-radius: 12px;
+  box-shadow: rgba(50, 50, 93, 0.5) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 button {

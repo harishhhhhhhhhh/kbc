@@ -256,7 +256,7 @@ export class QuestionComponent implements OnInit {
     this.overlayDisplayFlag = false;
     setTimeout(() => {
       this.overlayDisplayFlag = true;
-    }, 3000);
+    }, 100);
     if (this.totalCategories == 0) {
       alert('no questions available to display');
     }

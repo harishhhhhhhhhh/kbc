@@ -8,10 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DisplayNumberComponent implements OnInit {
   addingClassFlag: boolean = false;
   private flipaudio = new Audio();
-  private  flipAudioSrc= '/assets/audio/flip.mp3';
+  private flipAudioSrc = '/assets/audio/flip.mp3';
 
-
-  constructor(){
+  constructor() {
     this.flipaudio.src = this.flipAudioSrc;
   }
 
@@ -27,14 +26,11 @@ export class DisplayNumberComponent implements OnInit {
   turnOffOrOn() {
     setTimeout(() => {
       this.addingClassFlag = true;
-    }, 1000);
+    }, 100);
     console.log('hey theere');
     setTimeout(() => {
       this.addingClassFlag = false;
-    }, 3000);
+    }, 100);
     this.flipaudio.play();
-
   }
-
-
 }
