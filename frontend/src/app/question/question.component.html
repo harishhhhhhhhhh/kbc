@@ -15,25 +15,25 @@
                 <img class="w-[9rem] cursor-pointer hover-item" src=" /assets/lifeline1bgremoved.png"
                     (click)="fiftyfifty()" *ngIf="!fiftyfiftyUsed">
                 <img class="w-[9rem] cursor-pointer " src=" /assets/lifeline1cross.png" *ngIf="fiftyfiftyUsed">
-                <img class="w-[9rem] cursor-pointer hover-item" src=" /assets/audiencelifeline.png"
+                <img class="w-[10rem] cursor-pointer hover-item " src=" /assets/audiencelifeline.png"
                     (click)="audiencePole()" *ngIf="!audiencePoleUsed">
-                <img class="w-[9rem] cursor-pointer" src=" /assets/audiencelifelineused.png" *ngIf="audiencePoleUsed">
+                <img class="w-[10rem] cursor-pointer" src=" /assets/audiencelifelineused.png" *ngIf="audiencePoleUsed">
             </div>
         </div>
         <div class="w-full flex justify-center items-start flex-col">
             <div class="flex w-[50%] ml-[15%] justify-around items-center">
                 <div class="">
                     <button [ngClass]="{ startBtn: startFlag }"
-                        class="btn btn-outline-primary btn-lg text-2xl text-black start__btn w-[7rem] italic hover-item"
+                        class="btn btn-outline-primary btn-lg text-2xl text-black start__btn w-[7rem] italic"
                         (click)="startTimer()">
                         Start
                     </button>
                 </div>
                 <div class="circle">
-                    <h2 class="timer font-bold text-[2.5rem] hover-item">{{ timeLeft }}</h2>
+                    <h2 class="timer font-bold text-[2.5rem] ">{{ timeLeft }}</h2>
                 </div>
                 <div class="">
-                    <button class="btn btn-primary btn-lg text-2xl text-black pause__btn w-[7rem] italic hover-item"
+                    <button class="btn btn-primary btn-lg text-2xl text-black pause__btn w-[7rem] italic"
                         [ngClass]="{ startBtn: pauseFlag }" (click)="pauseTimer()">
                         Pause
                     </button>
@@ -41,8 +41,9 @@
             </div>
 
 
-            <div class="p-5 w-[80%] max-h-max bg-white rounded-[2rem] relative">
-                <div class="question flex items-center justify-center text-3xl">
+            <div class="p-5 w-[80%] max-h-max bg-transparent rounded-[2rem] relative ">
+                <div
+                    class="question flex items-center justify-center text-3xl questionBorderStyle max-h-max p-3 bg-[#232526] text-white">
                     <ngx-typed-js [strings]="[currentSelectedQuestion ]" [showCursor]="false" [typeSpeed]="15"
                         [startDelay]="2700">
                         <h1 class="typing italic"></h1>
@@ -52,10 +53,11 @@
 
                 <div class="options grid grid-cols-2 gap-x-7 gap-y-12 mt-5"
                     *ngIf="!correctAnswerFlag && !wrongAnswerFlag && displayOptions">
-                    <div class="borderstyle flex cursor-pointer  hover-item" #option *ngFor="let option of options"
-                        [ngClass]="{ colors: option.color }" (click)="changeColor(option.id)">
-                        <div class="ml-5 borderLeftStyle pr-2">{{ option.rome }}</div>
-                        <div class="flex justify-center items-center w-full">
+                    <div class="borderstyle flex cursor-pointer  border-red-500 bg-[#232526] text-white" #option
+                        *ngFor="let option of options" [ngClass]="{ colors: option.color }"
+                        (click)="changeColor(option.id)">
+                        <div class="ml-5 borderLeftStyle pr-2  text-orange-400 p-1">{{ option.rome }}</div>
+                        <div class="flex justify-center items-center w-full ">
                             <ngx-typed-js [strings]="[option.name ]" [showCursor]="false" [typeSpeed]="30">
                                 <h1 class="typing italic"></h1>
                             </ngx-typed-js>
@@ -64,8 +66,8 @@
                     </div>
                 </div>
                 <div class="options grid grid-cols-2 gap-x-7 gap-y-12 mt-5" *ngIf="correctAnswerFlag">
-                    <div class="borderstyle flex cursor-pointer" #option *ngFor="let option of options"
-                        [ngClass]="{ ansColor: option.color }">
+                    <div class="borderstyle flex cursor-pointer bg-[#232526] text-white" #option
+                        *ngFor="let option of options" [ngClass]="{ ansColor: option.color }">
                         <div class="ml-5 borderLeftStyle pr-2">{{ option.rome }}</div>
                         <div class="flex justify-center items-center w-full">
                             {{ option.name }}
@@ -73,7 +75,8 @@
                     </div>
                 </div>
                 <div class="options grid grid-cols-2 gap-x-7 gap-y-12 mt-5" *ngIf="wrongAnswerFlag">
-                    <div class="borderstyle flex cursor-pointer" #option *ngFor="let option of options"
+                    <div class="borderstyle flex cursor-pointer bg-[#232526] text-white" #option
+                        *ngFor="let option of options"
                         [ngClass]="{ wrongAnsColor: option.color, ansColor: option.crct }">
                         <div class="ml-5 borderLeftStyle pr-2">{{ option.rome }}</div>
                         <div class="flex justify-center items-center w-full">
@@ -82,16 +85,16 @@
                     </div>
                 </div>
 
-                <div class="absolute top-0 right-6 text-lg italic rounded-lg font-semibold hover-item">
+                <!-- <div class="absolute top-0 right-6 text-lg italic rounded-lg font-semibold">
                     <ngx-typed-js [strings]="[currentSelectedCategoryName ]" [showCursor]="false" [typeSpeed]="40"
                         [startDelay]="2700">
                         <h1 class="typing"></h1>
                     </ngx-typed-js>
-                    <!-- {{currentSelectedCategoryName}} -->
-                </div>
+                    {{currentSelectedCategoryName}}
+                </div> -->
             </div>
 
-            <div class="mt-6 flex justify-end w-3/5 ml-[19.5%]  hover-item" [hidden]="wrongAnswerFlag">
+            <div class="mt-6 flex justify-end w-3/5 ml-[19.5%]  text-white" [hidden]="wrongAnswerFlag">
                 <button class="bottombtn italic" (click)="displayAnswer()" *ngIf="!correctAnswerFlag"
                     [disabled]="!optionclicked">
                     Lock Answer
@@ -103,7 +106,7 @@
         </div>
 
     </div>
-    <button class="absolute  top-2 right-5 btnEnd m-2 italic  hover-item" routerLink="">
+    <button class="absolute  top-2 right-5 btnEnd m-2 italic" routerLink="">
         End Quiz
     </button>
 
@@ -119,23 +122,3 @@
         [image]="'assets/timeupbg.gif'" />
 
 </div>
-
-<!-- <div class="borderstyle flex cursor-pointer" [ngClass]="{color:setColor}" (click)="setColor=!setColor">
-    <div class="ml-5 borderLeftStyle pr-2">A</div>
-    <div class="ml-5 flex-1">{{option1}}</div>
-    <div class="w-1/6">
-        lock
-    </div>
-</div>
-<div class="borderstyle flex cursor-pointer" [ngClass]="{color:setColor}" (click)="setColor=!setColor">
-    <div class="ml-5 borderLeftStyle pr-2">B</div>
-    <div class="ml-5 flex-1">{{option2}}</div>
-</div>
-<div class="borderstyle flex cursor-pointer" [ngClass]="{color:setColor}" (click)="setColor=!setColor">
-    <div class="ml-5 borderLeftStyle pr-2">C</div>
-    <div class="ml-5 flex-1">{{option3}}</div>
-</div>
-<div class="borderstyle flex cursor-pointer" [ngClass]="{color:setColor}" (click)="setColor=!setColor">
-    <div class="ml-5 borderLeftStyle pr-2">D</div>
-    <div class="ml-5 flex-1">{{option4}}</div>
-</div> -->
