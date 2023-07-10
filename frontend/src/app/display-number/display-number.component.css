@@ -1,22 +1,24 @@
 .logo1 {
-  background-color: #390f4e;
+  background-color: #232526;
   border-radius: 50%;
-  box-shadow: 0px 0px 20px 8px #34c6f6;
+  box-shadow: 0px 0px 20px 8px #4f5456;
   width: 300px;
   height: 300px;
   transform-style: preserve-3d;
   transition: all 0.5s ease;
   position: relative;
 }
-
+*,::before,::after{
+  --tw-ring-color:transparent;
+}
 .logo1-hover {
   transform: rotateY(180deg);
 }
 
 .front {
-  background-color: #390f4e;
+  background-color: #232526;
   border-radius: 50%;
-  box-shadow: 0px 0px 20px 8px #34c6f6;
+  box-shadow: 0px 0px 20px 8px #4f5456;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
@@ -29,7 +31,7 @@
   height: 100%;
   border-radius: 50%;
   backface-visibility: hidden;
-  background: #390f4e;
+  background: #4f5456;
   color: #333;
   transform: rotateY(180deg);
 }
@@ -104,9 +106,9 @@
 /*logo*/
 
 .logo {
-  background-color: #390f4e;
+  background-color: #232526;
   border-radius: 50%;
-  box-shadow: 0px 0px 20px 8px #34c6f6;
+  box-shadow: 0px 0px 20px 8px #4f5456;
   position: absolute;
   left: 50%;
   margin-left: -225px;
@@ -140,7 +142,7 @@
   border: 4px solid #bcd8da;
   border-radius: 50%;
   padding: 10px;
-  background-color: #242343;
+  /* background-color: ; */
   -webkit-animation: rotate 100s linear infinite;
   animation: rotate 100s linear infinite;
 }
@@ -289,12 +291,13 @@
 .rin {
   width: 50px;
   height: 350px;
-  border: 2px solid #5588cc;
+  border: 2px solid #f4b869;
   border-radius: 50%;
 }
 
 .ring:nth-child(odd) .rin {
-  border: 2px solid #d4af37;
+  border: 2px solid #f49c60; 
+
 }
 
 .border {

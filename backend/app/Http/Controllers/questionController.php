@@ -32,6 +32,30 @@ class questionController extends Controller
 
     }
 
+    function upload(Request $request){
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            // Process the uploaded Excel file using Maatwebsite\Excel
+            $data = Excel::toArray([], $file);
+
+            if (!empty($data)) {
+                $rows = $data[0]; // Assuming the data is present in the first sheet
+
+                // Assuming you have a table named 'excel_data' to save the data
+                foreach ($rows as $row) {
+                    DB::table('excel_data')->insert([
+                        'column1' => $row[0], // Access the appropriate columns from the imported row
+                        'column2' => $row[1],
+                        // Set values for other columns accordingly
+                    ]);
+                }
+                return response()->json(['message' => 'Upload successful']);
+            }
+
+        }
+        return response()->json(['message' => 'No file uploaded'], 400);
+    }
 
     
 }
