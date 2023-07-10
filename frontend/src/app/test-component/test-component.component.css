@@ -1,0 +1,58 @@
+.lightning-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lightning-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://i.stack.imgur.com/Dlgm9.jpg') repeat;
+    animation: lightning 5s infinite;
+  }
+  
+  .content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    z-index: 1;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #333;
+    font-family: Arial, sans-serif;
+  }
+  
+  
+  @keyframes lightning {
+    0% {
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    10% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    30% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  

@@ -1,3 +1,17 @@
+.div-with-lighting {
+  animation: rainbow 5s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { box-shadow: 0 0 10px 10px red; }
+  14% { box-shadow: 0 0 10px 10px orange; }
+  28% { box-shadow: 0 0 10px 10px yellow; }
+  42% { box-shadow: 0 0 10px 10px green; }
+  57% { box-shadow: 0 0 10px 10px blue; }
+  71% { box-shadow: 0 0 10px 10px indigo; }
+  85% { box-shadow: 0 0 10px 10px violet; }
+  100% { box-shadow: 0 0 10px 10px red; }
+}
 .overlay {
   position: fixed;
   top: 0;
@@ -16,7 +30,7 @@
   margin: 0;
   overflow: hidden;
   background: #222;
-  background: radial-gradient(circle, #6f40ec 0%, #1d0f52 100%);
+  background: url('/assets/bg.jpg');
   min-height: 100vh;
 }
 

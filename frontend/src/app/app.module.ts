@@ -10,13 +10,15 @@ import { QuestionComponent } from './question/question.component';
 import { NgxTypedJsModule } from 'ngx-typed-js';
 import { DisplayNumberComponent } from './display-number/display-number.component';
 import { AlertcomponentComponent } from './alertcomponent/alertcomponent.component';
+import { TestComponentComponent } from './test-component/test-component.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResultComponent } from './result/result.component';
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, QuestionComponent, DisplayNumberComponent, ResultComponent,AlertcomponentComponent],
+  declarations: [AppComponent, HomeComponent, QuestionComponent, DisplayNumberComponent, ResultComponent,AlertcomponentComponent, TestComponentComponent],
 
   imports: [
     BrowserModule,
@@ -24,6 +26,7 @@ import { ResultComponent } from './result/result.component';
     FormsModule,
     HttpClientModule,
     NgxTypedJsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
