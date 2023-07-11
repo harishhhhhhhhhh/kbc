@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { QuestionComponent } from './question/question.component';
 import { NgxTypedJsModule } from 'ngx-typed-js';
 import { DisplayNumberComponent } from './display-number/display-number.component';
+
 import { AlertcomponentComponent } from './alertcomponent/alertcomponent.component';
 import { TestComponentComponent } from './test-component/test-component.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

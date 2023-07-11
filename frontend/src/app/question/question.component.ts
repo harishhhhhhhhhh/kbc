@@ -40,6 +40,7 @@ export class QuestionComponent implements OnInit {
   clapInterval: any;
   fiftyfityClickedFlag: boolean = false;
   audiencePollClickedFlag: boolean = false;
+  beat: boolean = false;
 
   private clockaudio = new Audio();
   private correctAnsweraudio = new Audio();
@@ -122,6 +123,7 @@ export class QuestionComponent implements OnInit {
     this.displayOptions = true;
     this.startFlag = true;
     this.pauseFlag = false;
+    this.beat = true;
     if (!this.timerStarted) {
       this.interval = setInterval(() => {
         if (this.timeLeft > 0) {
@@ -137,6 +139,7 @@ export class QuestionComponent implements OnInit {
   }
 
   pauseTimer() {
+    this.beat = false;
     this.clockaudio.pause();
     this.startFlag = false;
     this.pauseFlag = true;
