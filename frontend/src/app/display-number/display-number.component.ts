@@ -26,11 +26,11 @@ export class DisplayNumberComponent implements OnInit {
   turnOffOrOn() {
     setTimeout(() => {
       this.addingClassFlag = true;
-    }, 100);
+    }, 1000);
     console.log('hey theere');
     setTimeout(() => {
       this.addingClassFlag = false;
-    }, 100);
+    }, 3000);
     this.flipaudio.play();
   }
 }

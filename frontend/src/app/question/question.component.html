@@ -9,7 +9,8 @@
 </div>
 
 
-<div class="w-screen h-screen flex flex-col items-center justify-center bgimage bg-gray-800 relative">
+<div class="w-screen h-screen flex flex-col items-center justify-center bgimage relative"
+    [ngClass]="{bgGreen:correctAnswerFlag, bgRed:wrongAnswerFlag}">
     <div class="flex justify-center items-center w-screen">
         <div class="flex basis-[30%]  items-center justify-center">
             <div class="">
@@ -69,7 +70,7 @@
                 <div class="options grid grid-cols-2 gap-x-7 gap-y-12 mt-5" *ngIf="correctAnswerFlag">
                     <div class="borderstyle flex cursor-pointer bg-[#232526] text-white" #option
                         *ngFor="let option of options" [ngClass]="{ ansColor: option.color }">
-                        <div class="ml-5 borderLeftStyle pr-2">{{ option.rome }}</div>
+                        <div class="ml-5 borderLeftStyle pr-2 text-orange-400 p-1">{{ option.rome }}</div>
                         <div class="flex justify-center items-center w-full">
                             {{ option.name }}
                         </div>
@@ -79,7 +80,7 @@
                     <div class="borderstyle flex cursor-pointer bg-[#232526] text-white" #option
                         *ngFor="let option of options"
                         [ngClass]="{ wrongAnsColor: option.color, ansColor: option.crct }">
-                        <div class="ml-5 borderLeftStyle pr-2">{{ option.rome }}</div>
+                        <div class="ml-5 borderLeftStyle pr-2 text-orange-400 p-1">{{ option.rome }}</div>
                         <div class="flex justify-center items-center w-full">
                             {{ option.name }}
                         </div>
