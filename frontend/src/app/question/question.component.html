@@ -26,16 +26,46 @@
             <div class="flex w-[50%] ml-[15%] justify-around items-center">
                 <div class="">
                     <button [ngClass]="{ startBtn: startFlag }"
-                        class="btn btn-outline-primary btn-lg text-2xl text-black start__btn w-[7rem] italic"
+                        class="btn border-[#f18b17] btn-lg text-2xl text-black start__btn w-[7rem] italic"
                         (click)="startTimer()">
                         Start
                     </button>
                 </div>
-                <div class="circle">
+                <!-- <div class="circle">
                     <h2 class="timer font-bold text-[2.5rem] ">{{ timeLeft }}</h2>
+                </div> -->
+
+                <!-- <div id="app">
+                    <div class="base-timer">
+                        <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                          <g class="base-timer__circle" [ngClass]="{
+                            'alert-positive' : timeLeft < 11,
+                            'alertnegative' : timeLeft < 6
+                         }">
+                            <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45" />
+                          </g>
+                        </svg>
+                        <span id="base-timer-label" class="base-timer__label"  [ngClass]="{heart: beat}"> -->
+                          <!-- Remaining time label -->
+                          <!-- {{timeLeft}}
+                        </span>
+                      </div>
+                </div> -->
+
+                <div class="ellipse" [ngClass]="{step1 : timeLeft > 35,
+                    step2 : (timeLeft > 30 && timeLeft < 36),
+                    step3 : (timeLeft > 25 && timeLeft < 31),
+                    step4 : (timeLeft > 20 && timeLeft < 26),
+                    step5 : (timeLeft > 15 && timeLeft < 21),
+                    step6 : (timeLeft > 10 && timeLeft < 16),
+                    step7 : (timeLeft > 5 && timeLeft < 11),
+                    step8 : timeLeft < 6}">
+                    <div class="timer" [ngClass]="{heart : (timeLeft < 11 && timeLeft != 0)}"
+                    >{{timeLeft}}</div>
                 </div>
+
                 <div class="">
-                    <button class="btn btn-primary btn-lg text-2xl text-black pause__btn w-[7rem] italic"
+                    <button class="btn border-[#f18b17] btn-primary btn-lg text-2xl text-black pause__btn w-[7rem] italic"
                         [ngClass]="{ startBtn: pauseFlag }" (click)="pauseTimer()">
                         Pause
                     </button>

@@ -32,7 +32,7 @@
   border: solid;
   border-width: 2px 4px;
   border-radius: 10px 40px;
-  border-color: rgb(241, 139, 23);
+  border-color: #f18b17;
 }
 
 .borderstyle {
@@ -97,7 +97,8 @@
 }
 
 .bottombtn {
-  background-color: #6f40ec;
+  background-color: transparent;
+  font-weight: bold;
   font-size: 1.5em;
   border-radius: 12px;
   padding: 0 3.5rem;
@@ -109,17 +110,22 @@
   border-radius: 12px;
   padding: 0 3.5rem;
   cursor: pointer;
-  background-color: rgb(243, 49, 49);
+  background-color:transparent;
+  color: white;
+  font-weight: bold;
 }
 
+.btnEnd:hover {
+  background-color: #f49c60;
+}
 .bottombtn:hover {
   --tw-bg-opacity: 1;
-  background-color: #141e63;
+  background-color: #f49c60;
 }
 
 .startBtn {
-  box-shadow: rgba(50, 50, 93, 0.5) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: #f49c60 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 1) 0px 18px 36px -18px inset;
 }
 
 button {
@@ -168,4 +174,63 @@ button {
 
 .fade {
   opacity: 0;
+}
+
+
+/* ellipse timer */
+
+.ellipse{
+  height: 100px;
+  width: 150px;
+  background-color: green;
+  /* Setting Border Radius */
+  border-radius: 50%;
+  border: 10px solid black;
+  display: flex;
+  margin: auto;
+}
+.ellipse .timer{
+  align-items: center;
+  margin: auto;
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.step1{
+background-color: rgb(5, 121, 5);
+}
+.step2{
+background-color: rgb(5, 141, 5);
+}
+.step3{
+background-color: rgb(5, 160, 5);
+}
+.step4{
+background-color: rgb(5, 180, 5);
+}
+.step5{
+background-color: rgb(5, 195, 5);
+}
+.step6{
+background-color: rgb(5, 200, 5);
+}
+.step7{
+background-color: rgb(255, 0, 0);
+}
+.step8{
+background-color: rgba(247, 11, 3, 0.938);
+}
+
+
+.heart {
+  animation: beat .5s infinite alternate;
+  transform-origin: center;
+}
+
+/* Heart beat animation */
+@keyframes beat {
+  to {
+    transform: scale(1.4);
+  }
 }
