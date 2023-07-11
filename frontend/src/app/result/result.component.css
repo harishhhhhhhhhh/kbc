@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Serif:700);
+body{
+	margin: 0;
+	background: hsla(180, 95%, 15%, 1);
+	font-family: 'Noto Serif', serif;
+	font-size: 4em;
+  overflow:hidden;
+  width:100%;
+  
+}
+
+ canvas {
+	left: 50%;
+	position: absolute;
+	top :50%;
+	transform :translate( -50%, -50% );
+}

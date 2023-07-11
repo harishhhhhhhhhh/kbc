@@ -34,6 +34,7 @@ import {
       </div>
     </div>
     <!-- <div class="ButtonContainer">
+    <!-- <div class="ButtonContainer">
       <button class="btn btn-primary"(click)="changeLightColor('rgba(255, 0, 0, 0.5)')">Change to Red</button>
       <button class="btn btn-primary" (click)="changeLightColor('rgba(0, 255, 0, 0.5)')">Change to gree</button>
     </div> -->
@@ -144,11 +145,11 @@ export class TestComponentComponent implements OnInit {
     // Start the animation after a delay (e.g., 2 seconds)
     setTimeout(() => {
       this.toggleLight();
-    }, 2000);
+    }, 1000);
   }
 
   toggleLight() {
-    this.lightState = this.lightState === 'off' ? 'on' : 'off';
+    this.lightState = 'on';
   }
 
   changeLightColor(color: string) {
