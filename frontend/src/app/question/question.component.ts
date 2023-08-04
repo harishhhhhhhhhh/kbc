@@ -48,13 +48,15 @@ export class QuestionComponent implements OnInit {
   private optionLockaudio = new Audio();
   private optionClickSuspenceaudio = new Audio();
   private wrongAnsweraudio = new Audio();
-  private clockAudioSrc = '/assets/audio/Kbc Clock.mp3';
+  private suspence1Audio = new Audio();
+  private clockAudioSrc = '/assets/audio/kbc-clock.mp3';
   private correctAnsweraudioSrc = '/assets/audio/Kbc Correct Answer.mp3';
   private audienceClapaudioSrc = '/assets/audio/KBC  Audience Clapping.mp3';
-  private optionLockaudioSrc = '/assets/audio/Kbc Option Lock Tune.mp3';
+  private optionLockaudioSrc = '/assets/audio/Lock.mp3';
   private optionClickSuspenceaudioSrc =
     '/assets/audio/Kbc suspense Amitabh Bacchan.mp3';
   private wrongAnsweraudioSrc = '/assets/audio/Kbc Galat Jawab.mp3';
+  private suspence1AudioSrc = '/assets/audio/Suspense1.mp3';
 
   constructor(
     private service: ApiServiceService,
@@ -67,6 +69,8 @@ export class QuestionComponent implements OnInit {
     this.optionClickSuspenceaudio.src = this.optionClickSuspenceaudioSrc;
     this.optionClickSuspenceaudio.loop = true;
     this.wrongAnsweraudio.src = this.wrongAnsweraudioSrc;
+    this.suspence1Audio.src = this.suspence1AudioSrc;
+    this.suspence1Audio.loop = true;
   }
 
   data: any;
@@ -124,6 +128,7 @@ export class QuestionComponent implements OnInit {
     this.startFlag = true;
     this.pauseFlag = false;
     this.beat = true;
+    // this.suspence1Audio.pause();
     if (!this.timerStarted) {
       this.interval = setInterval(() => {
         if (this.timeLeft > 0) {
@@ -148,6 +153,7 @@ export class QuestionComponent implements OnInit {
   }
 
   changeColor(id: number) {
+    this.suspence1Audio.pause();
     this.optionclicked = true;
     this.options.forEach((element: any) => {
       element.color = false;
@@ -161,15 +167,18 @@ export class QuestionComponent implements OnInit {
     this.selectedOption = id;
     this.pauseTimer();
     this.optionLockaudio.play();
-    setTimeout(() => {
-      this.optionClickSuspenceaudio.play();
-    }, 4000);
+    // setTimeout(() => {
+    //   this.optionClickSuspenceaudio.play();
+    // }, 4000);
     console.log(this.crctOption);
   }
 
   displayAnswer() {
     this.optionClickSuspenceaudio.pause();
     this.optionClickSuspenceaudio.loop = false;
+    this.optionClickSuspenceaudio.currentTime = 0;
+    this.optionLockaudio.pause();
+    this.optionLockaudio.currentTime = 0;
     if (this.selectedOption == this.crctOption) {
       this.correctAnswerFlag = true;
       this.correctAnsweraudio.play();
@@ -181,7 +190,6 @@ export class QuestionComponent implements OnInit {
       this.wrongAnswerFlag = true;
       this.wrongAnsweraudio.play();
     }
-    this.pauseTimer();
   }
 
   //fifty fifty life line
@@ -227,6 +235,12 @@ export class QuestionComponent implements OnInit {
   currentSelectedCorrectAnswer: any = '';
   currentSelectedQuestionId: any = '';
 
+  resetAudio(){
+    this.clockaudio.currentTime = 0;
+    this.audienceClapaudio.pause();
+    this.audienceClapaudio.currentTime = 0;
+
+  }
   resetVariables() {
     this.timeLeft = 40;
     this.timerStarted = false;
@@ -251,9 +265,15 @@ export class QuestionComponent implements OnInit {
     ];
   }
 
+
   @ViewChild(DisplayNumberComponent) child!: DisplayNumberComponent;
 
   nextquestion() {
+    setTimeout(() => {
+      this.suspence1Audio.play();
+    }, 2700);
+   
+    this.resetAudio();
     this.child.turnOffOrOn();
     this.currentQuestionNumber++;
     this.overlayDisplayFlag = false;

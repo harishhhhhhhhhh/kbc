@@ -2,6 +2,7 @@
 <app-display-number [hidden]="overlayDisplayFlag" [quesNumber]="currentQuestionNumber" />
 <app-alertcomponent [hidden]="!audiencePollClickedFlag" (onBtnClicked)="onAudienceBtnClicked($event)"
     [image]="'assets/audiencelifeline.png'" />
+
 <div class="absolute overlay " *ngIf="fiftyfityClickedFlag">
     <div class=" w-[25rem] h-[12rem] flex items-center justify-center rounded-lg ">
         <img src="/assets/lifeline1bgremoved.png" />
