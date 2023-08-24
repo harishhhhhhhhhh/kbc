@@ -88,12 +88,12 @@
 
 .colors {
   border-color: red;
-  box-shadow: rgba(82, 144, 236, 0.527) 0px -23px 25px 0px inset,
-    rgba(199, 27, 27, 0.15) 0px -36px 30px 0px inset,
+  box-shadow: rgba(230, 163, 19, 0.527) 0px -23px 25px 0px inset,
+    rgba(14, 13, 13, 0.15) 0px -36px 30px 0px inset,
     rgba(132, 139, 241, 0.1) 0px -79px 40px 0px inset,
-    rgba(73, 192, 247, 0.06) 0px 2px 1px, rgba(206, 209, 9, 0.09) 0px 4px 2px,
-    rgba(247, 247, 247, 0.09) 0px 8px 4px, rgba(8, 184, 22, 0.09) 0px 16px 8px,
-    rgba(240, 235, 235, 0.09) 0px 32px 16px;
+    rgba(14, 22, 26, 0.06) 0px 2px 1px, rgba(12, 12, 9, 0.09) 0px 4px 2px,
+    rgba(26, 16, 16, 0.09) 0px 8px 4px, rgba(8, 8, 8, 0.09) 0px 16px 8px,
+    rgba(24, 14, 14, 0.09) 0px 32px 16px;
 }
 
 .bottombtn {
@@ -236,3 +236,32 @@ background-color: rgba(247, 11, 3, 0.938);
 }
 
 
+.greetPlayer{
+
+  font-size: 22px;
+  font-weight: 700;
+  font-family: "Audiowide", cursive;
+  color: #f18b17;
+  text-shadow:  1px 0px 1px #111111, 0px 1px 1px #201f1f, 
+  2px 1px 1px #111111, 1px 2px 1px #111111
+
+ }
+
+
+ .triangle {
+  margin: 0 auto;
+  vertical-align: middle;
+  
+}
+
+.triangle-5 {
+  width: 60px;
+  height: 30px;
+  border-top: solid 30px #f18b17;
+  border-left: solid 30px transparent;
+  border-right: solid 30px transparent;
+  cursor: pointer;
+}
+
+
+ 

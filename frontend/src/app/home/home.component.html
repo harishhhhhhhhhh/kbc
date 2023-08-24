@@ -1,8 +1,9 @@
+
 <body>
     <app-test-component></app-test-component>
 
-    <div class=" bgimage1 w-screen h-screen " (onclick)="playAudio()">
-        <div class="logo " routerLink="/questions">
+    <div class=" bgimage1 w-screen h-screen " (onclick)="playAudio()" >
+        <div class="logo " >
             <div class="rings">
                 <div class="ring">
                     <div class="rin"></div>
@@ -92,13 +93,13 @@
                 <div class="char"><b>E</b></div>
             </div>
         </div>
-        <!-- <div class="flex flex-col justify-center items-center w-3/4 h-1/2 bg-slate-200 rounded-lg bgimage1 bg-gray-700">
+        <!-- <div class="flex flex-col justify-center items-center w-3/4 h-1/2 bg-slate-200 rounded-lg bgimage1 bg-gray-700"> -->
 
-            <div class="mb-5 w-3/4 ">
+            <!-- <div class="mb-5 w-3/4 ">
                 <input type="text" class="form-control text-2xl placeholder-gray-400 placeholder:ease-in-out"
                     [(ngModel)]="name" placeholder="Enter your name" required />
-            </div>
-            <button class="w-1/2" routerLink="/questions" [disabled]="!name"
+            </div> -->
+            <!-- <button class="w-1/2" routerLink="/questions" [disabled]="!name"
                 class="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 rounded-lg shadow-inner group w-1/2">
                 <span
                     class="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
@@ -114,10 +115,49 @@
                     class="relative transition-colors duration-300 delay-200 group-hover:text-white ease text-3xl flex justify-center items-center">Start
                     New
                     Game</span>
-            </button>
+            </button> -->
 
-        </div> -->
+        <!-- </div> -->
 
-
+        
     </div>
+    
+   <div class="playerDetail">
+    <div class="greetPlayer">
+        <div class="effect" [style.transform]="'translateX(' + getPosition() + 'px)'">WELCOME {{ playerName | uppercase }} </div>
+      
+    </div>
+    <img class="meraki_logo" (click)="dropPlayerName()"   src="/assets/Meraki_logo_noBg.png">
+    <!-- <input type="text" class="form-control text-2xl placeholder-gray-400 placeholder:ease-in-out"
+    [(ngModel)]="playerName" placeholder="Enter your name" required />
+    <button (click)="savePlayerName()" class="btn btn-primary">Save</button> -->
+    <br>
+    <div class="text_field" *ngIf="playerNameDisplayFlag">
+    <!-- <input class="c-checkbox" type="checkbox" id="checkbox"> -->
+<div class="c-formContainer">
+  <!-- <form class="c-form" action=""> -->
+    <input class="c-form__input" #nameInput  placeholder="Player name" [(ngModel)]="playerName" (keydown.enter)="savePlayerName()" (input)="updateWidth()" type="text" required>
+    <label class="c-form__buttonLabel">
+      <button class="c-form__button" (click)="savePlayerName()" >Start</button>
+    </label>
+    <!-- <label class="c-form__toggle" for="checkbox" data-title="Player"></label> -->
+  <!-- </form> -->
+</div>
+</div>
+
+</div>
+<!-- <div class="text_field">
+<input class="c-checkbox" type="checkbox" id="checkbox">
+<div class="c-formContainer">
+  <form class="c-form" action="">
+    <input class="c-form__input" placeholder="E-mail" type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+    <label class="c-form__buttonLabel" for="checkbox">
+      <button class="c-form__button" type="button">Send</button>
+    </label>
+    <label class="c-form__toggle" for="checkbox" data-title="Notify me"></label>
+  </form>
+</div>
+</div> -->
+    
+    
 </body>

@@ -1,14 +1,14 @@
 
 <app-display-number [hidden]="overlayDisplayFlag" [quesNumber]="currentQuestionNumber" />
 <app-alertcomponent [hidden]="!audiencePollClickedFlag" (onBtnClicked)="onAudienceBtnClicked($event)"
-    [image]="'assets/audiencelifeline.png'" />
+    [image]="'/assets/audience_poll.png'" />
 
-<div class="absolute overlay " *ngIf="fiftyfityClickedFlag">
+<!-- <div class="absolute overlay " *ngIf="fiftyfityClickedFlag">
     <div class=" w-[25rem] h-[12rem] flex items-center justify-center rounded-lg ">
         <img src="/assets/lifeline1bgremoved.png" />
     </div>
 
-</div>
+</div> -->
 
 
 <div class="w-screen h-screen flex flex-col items-center justify-center bgimage relative"
@@ -16,12 +16,12 @@
     <div class="flex justify-center items-center w-screen">
         <div class="flex basis-[30%]  items-center justify-center">
             <div class="">
-                <img class="w-[9rem] cursor-pointer hover-item" src=" /assets/lifeline1bgremoved.png"
+                <img class="w-[9rem] cursor-pointer hover-item" src=" /assets/50-50.png"
                     (click)="fiftyfifty()" *ngIf="!fiftyfiftyUsed">
-                <img class="w-[9rem] cursor-pointer " src=" /assets/lifeline1cross.png" *ngIf="fiftyfiftyUsed">
-                <img class="w-[10rem] cursor-pointer hover-item " src=" /assets/audiencelifeline.png"
+                <img class="w-[9rem] cursor-pointer " src=" /assets/50-50_used.png" *ngIf="fiftyfiftyUsed">
+                <img class="w-[10rem] cursor-pointer hover-item " src=" /assets/audience_poll.png"
                     (click)="audiencePole()" *ngIf="!audiencePoleUsed">
-                <img class="w-[10rem] cursor-pointer" src=" /assets/audiencelifelineused.png" *ngIf="audiencePoleUsed">
+                <img class="w-[10rem] cursor-pointer" src=" /assets/audience_poll_used.png" *ngIf="audiencePoleUsed">
             </div>
         </div>
         <div class="w-full flex justify-center items-start flex-col">
@@ -84,7 +84,9 @@
                     </ngx-typed-js>
                     <!-- {{ currentSelectedQuestion }} -->
                 </div>
-
+                 
+                <div class="triangle triangle-5" (click)="optionsDropDown()" [hidden]="displayOptions"></div>
+              
                 <div class="options grid grid-cols-2 gap-x-7 gap-y-12 mt-5"
                     *ngIf="!correctAnswerFlag && !wrongAnswerFlag && displayOptions">
                     <div class="borderstyle flex cursor-pointer  border-red-500 bg-[#232526] text-white" #option
@@ -119,18 +121,15 @@
                     </div>
                 </div>
 
-                <!-- <div class="absolute top-0 right-6 text-lg italic rounded-lg font-semibold">
-                    <ngx-typed-js [strings]="[currentSelectedCategoryName ]" [showCursor]="false" [typeSpeed]="40"
-                        [startDelay]="2700">
-                        <h1 class="typing"></h1>
-                    </ngx-typed-js>
-                    {{currentSelectedCategoryName}}
-                </div> -->
+                <div class="absolute top-0 right-6 text-lg italic rounded-lg font-semibold">
+                 
+                    {{gameLevel+1}}
+                </div>
             </div>
 
             <div class="mt-6 flex justify-end w-3/5 ml-[19.5%]  text-white" [hidden]="wrongAnswerFlag">
                 <button class="bottombtn italic" (click)="displayAnswer()" *ngIf="!correctAnswerFlag"
-                    [disabled]="!optionclicked">
+                    [hidden]="!optionclicked">
                     Lock Answer
                 </button>
                 <button class="bottombtn italic" (click)="nextquestion()" *ngIf="correctAnswerFlag">
@@ -140,9 +139,18 @@
         </div>
 
     </div>
-    <button class="absolute  top-2 right-5 btnEnd m-2 italic" routerLink="">
-        End Quiz
-    </button>
+        
+       <div class="absolute flex justify-center top-2 right-5  greetPlayer"><img src="assets\user_color.png" class="h-[35px] pr-2">{{playerName | uppercase}}</div>
+       
+        <button class="absolute  top-14 right-5  m-2 italic btnEnd"  (click)="endQuiz()" routerLink="">
+            End Quiz
+        </button>
+    
+
+    <div class="absolute top-[0.65rem] left-[1rem]  flex items-center justify-center">
+        <img src="assets\Meraki_logo_noBg.png" class="h-[150px]">
+    
+    </div>
 
     <!-- <div *ngIf="timeupFlag" class="alert alert-warning alert-dismissible fade show top-0 absolute italic" role="alert">
         <i>Times up...!!</i>
