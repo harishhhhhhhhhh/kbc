@@ -18,3 +18,5 @@ Route::get('/getQuestions', [questionController::class,'getQuestions']);
 Route::put('/updateQuestionStatus', [questionController::class,'updateQuestionStatus']);
 
 Route::post('/upload',[questionController::class,'upload']);
+
+Route::get('/getGameNumber', [questionController::class,'getGameNumer']);

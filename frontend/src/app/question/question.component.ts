@@ -14,6 +14,10 @@ interface Category {
   categoryName: string;
   questions: Question[];
 }
+interface Level {
+  levelNumber: number;
+  categories: Category[];
+}
 
 @Component({
   selector: 'app-question',
@@ -41,6 +45,9 @@ export class QuestionComponent implements OnInit {
   fiftyfityClickedFlag: boolean = false;
   audiencePollClickedFlag: boolean = false;
   beat: boolean = false;
+  gameLevel: number = 0;
+  currentLevelsize: any;
+  playerName:string =this.service.player;
 
   private clockaudio = new Audio();
   private correctAnsweraudio = new Audio();
@@ -76,26 +83,38 @@ export class QuestionComponent implements OnInit {
   data: any;
   categories: Category[] = [];
   totalCategories: any;
+
+  levels: Level[] = [];
+
   ngOnInit() {
+    console.log(this.service.player);
     this.service.getQuestions().subscribe((res: any) => {
       console.log(res);
       const responseData = res;
 
       responseData.forEach((row: any) => {
         const categoryName = row.category;
-        const questionName = row.question;
+        const questionName = row?.question;
         const options = [row.option1, row.option2, row.option3, row.option4];
         const answer = row.correct;
         const questionsId = row.id;
+        const questionLevel = row.level;
 
-        let category = this.categories.find(
-          (c) => c.categoryName === categoryName
-        );
+        let level = this.levels.find((l) => l.levelNumber === questionLevel);
 
-        if (!category) {
-          category = { categoryName: categoryName, questions: [] };
-          this.categories.push(category);
+        if (!level) {
+          level = { levelNumber: questionLevel, categories: [] };
+          this.levels.push(level);
         }
+
+        // let category = this.categories.find(
+        //   (c) => c.categoryName === categoryName
+        // );
+
+        // if (!category) {
+        //   category = { categoryName: categoryName, questions: [] };
+        //   this.categories.push(category);
+        // }
 
         const question: Question = {
           id: questionsId,
@@ -103,19 +122,38 @@ export class QuestionComponent implements OnInit {
           options: options,
           correctAnswer: answer,
         };
-        category.questions.push(question);
+
+        if (questionLevel === level.levelNumber) {
+          let category = level.categories.find(
+            (c) => c.categoryName === categoryName
+          );
+
+          if (!category) {
+            category = { categoryName: categoryName, questions: [] };
+            level.categories.push(category);
+          }
+
+          category.questions.push(question);
+          // level.categories.push(category);
+        }
+
+        // category.questions.push(question);
       });
 
       console.log('came', this.categories);
-      this.totalCategories = this.categories.length;
+      console.log('levle', this.levels);
+      // this.totalCategories = this.categories.length;
+      this.currentLevelsize = this.levels[0].categories.length;
       this.nextquestion();
     });
   }
 
-  setQuestionStatus(id: any) {
-    this.service.deleteQuestion(id).subscribe((res) => {
-      console.log('question status updated');
-    });
+  setQuestionStatus(id: any, qStatus: any) {
+    this.service
+      .deleteQuestion(id, this.service.gameNumber, this.service.player, qStatus)
+      .subscribe((res) => {
+        console.log('question status updated');
+      });
   }
 
   options: any;
@@ -123,12 +161,16 @@ export class QuestionComponent implements OnInit {
     console.log(data.name);
   }
 
-  startTimer() {
+  optionsDropDown(){
     this.displayOptions = true;
+  }
+
+  startTimer() {
+   
     this.startFlag = true;
     this.pauseFlag = false;
     this.beat = true;
-    // this.suspence1Audio.pause();
+    this.suspence1Audio.pause();
     if (!this.timerStarted) {
       this.interval = setInterval(() => {
         if (this.timeLeft > 0) {
@@ -165,7 +207,7 @@ export class QuestionComponent implements OnInit {
     this.options[id].color = !this.options[id].color;
 
     this.selectedOption = id;
-    this.pauseTimer();
+    // this.pauseTimer();
     this.optionLockaudio.play();
     // setTimeout(() => {
     //   this.optionClickSuspenceaudio.play();
@@ -174,6 +216,7 @@ export class QuestionComponent implements OnInit {
   }
 
   displayAnswer() {
+    this.pauseTimer();
     this.optionClickSuspenceaudio.pause();
     this.optionClickSuspenceaudio.loop = false;
     this.optionClickSuspenceaudio.currentTime = 0;
@@ -185,9 +228,17 @@ export class QuestionComponent implements OnInit {
       this.clapInterval = setTimeout(() => {
         this.audienceClapaudio.play();
       }, 1500);
+      this.setQuestionStatus(
+        this.currentSelectedQuestionId,
+        this.correctAnswerFlag
+      );
     } else {
       this.correctAnswerFlag = false;
       this.wrongAnswerFlag = true;
+      this.setQuestionStatus(
+        this.currentSelectedQuestionId,
+        this.correctAnswerFlag
+      );
       this.wrongAnsweraudio.play();
     }
   }
@@ -235,11 +286,10 @@ export class QuestionComponent implements OnInit {
   currentSelectedCorrectAnswer: any = '';
   currentSelectedQuestionId: any = '';
 
-  resetAudio(){
+  resetAudio() {
     this.clockaudio.currentTime = 0;
     this.audienceClapaudio.pause();
     this.audienceClapaudio.currentTime = 0;
-
   }
   resetVariables() {
     this.timeLeft = 40;
@@ -265,14 +315,14 @@ export class QuestionComponent implements OnInit {
     ];
   }
 
-
   @ViewChild(DisplayNumberComponent) child!: DisplayNumberComponent;
 
   nextquestion() {
+    console.log(this.correctAnswerFlag);
     setTimeout(() => {
       this.suspence1Audio.play();
     }, 2700);
-   
+
     this.resetAudio();
     this.child.turnOffOrOn();
     this.currentQuestionNumber++;
@@ -280,12 +330,16 @@ export class QuestionComponent implements OnInit {
     setTimeout(() => {
       this.overlayDisplayFlag = true;
     }, 2700);
-    if (this.totalCategories == 0) {
+
+    this.currentLevelsize =  this.levels[this.gameLevel].categories.length;
+
+    if (this.currentLevelsize == 0) {
       alert('no questions available to display');
     }
-
-    this.currentIndex = this.currentIndex % this.totalCategories;
-    this.currentSelectedCategory = this.categories[this.currentIndex];
+    this.currentIndex = this.currentIndex % this.currentLevelsize;
+    this.currentSelectedCategory =
+      this.levels[this.gameLevel].categories[this.currentIndex];
+    console.log("gamelevel",this.gameLevel+1,"category",this.currentSelectedCategory);
 
     // // Randomly select a question from the current category
     this.resetVariables();
@@ -295,6 +349,8 @@ export class QuestionComponent implements OnInit {
     const randomQuestionIndex = Math.floor(
       Math.random() * this.currentSelectedCategory.questions.length
     );
+    console.log('index', randomQuestionIndex);
+
     this.currentSelectedQuestion =
       this.currentSelectedCategory.questions[randomQuestionIndex].questionName;
 
@@ -347,21 +403,32 @@ export class QuestionComponent implements OnInit {
       }
     });
 
-    // console.log(this.currentSelectedCategory);
+    console.log(this.currentSelectedCategory);
     console.log('after splice', this.categories);
-    // console.log("questns dd",this.currentSelectedQuestionId);
-    // console.log('options', this.currentSelectedOptions);
-    // this.setQuestionStatus(this.currentSelectedQuestionId);
-    this.categories[this.currentIndex].questions.splice(randomQuestionIndex, 1);
+
+    console.log("questns dd",this.currentSelectedQuestionId);
+    console.log('options', this.currentSelectedOptions);
+
+    // this.categories[this.currentIndex].questions.splice(randomQuestionIndex, 1);
+    this.levels[this.gameLevel].categories[this.currentIndex].questions.splice(randomQuestionIndex, 1);
+    console.log("splice level",this.levels[this.gameLevel]);
     if (this.currentSelectedCategory.questions.length == 0) {
       console.log(
         'wemptyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
         this.currentSelectedCategory
       );
-      this.categories.splice(this.currentIndex, 1);
+      // this.categories.splice(this.currentIndex, 1);
+      this.levels[this.gameLevel].categories.splice(this.currentIndex,1);
       this.totalCategories -= 1;
     }
     this.currentIndex++;
+
+    if (this.currentQuestionNumber === 4 || this.currentQuestionNumber === 8)
+      this.gameLevel++;
+  }
+
+  endQuiz() {
+    this.setQuestionStatus(this.currentSelectedQuestionId, false);
   }
 
   onAudienceBtnClicked(value: boolean) {

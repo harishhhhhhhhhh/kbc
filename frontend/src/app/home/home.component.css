@@ -27,7 +27,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .mainHeading {
@@ -674,3 +674,202 @@
   }
 }
 /* ///////////////////// */
+
+.playerDetail{
+  position: absolute;
+  top: 0.65rem;
+  left: 1rem;
+  z-index: 9999;
+}
+
+.playerDetail .meraki_logo{
+  position: relative;
+  left: 3em;
+  height: 150px;
+  cursor: pointer;
+  
+}
+
+
+
+/* text box  */
+
+.text_field{
+  position: absolute;
+}
+
+
+
+.c-formContainer {
+  width: 21em;
+  
+  border: solid 2px 505457;
+  padding: 0.75rem;
+  border-radius: 5em;
+  box-shadow: 0 1em 1em rgba(0, 0, 0, 0.3);
+  background-color: #5f6061;
+  font-weight: bold;
+  
+}
+
+.c-form__input,
+.c-form__button {
+
+  border: 0;
+  outline: 0;
+  border-radius: 5em;
+  box-sizing: border-box;
+  color: #d45704;
+  padding: 5px;
+
+}
+
+.c-form__input::placeholder {
+ 
+  color: currentColor;
+  opacity: 50%;
+}
+
+.c-form__input:required:valid {
+  color: #d45704;
+}
+
+.c-form__input:required:valid + .c-form__buttonLabel {
+  color: #f7f3f3;
+}
+
+.c-form__input:required:valid + .c-form__buttonLabel::before {
+  pointer-events: initial;
+}
+
+.c-form__buttonLabel {
+  color: #d45704;
+  height: 100%;
+  width: auto;
+  padding-left: 10px;
+}
+.c-form__buttonLabel::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.c-form__button {
+  color: inherit;
+  padding: 5px;
+  height: 100%;
+  width: 5em;
+  background-color: #232526;
+} 
+
+
+
+/* .c-form__input,
+.c-form__buttonLabel {
+  font-size: 1em;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.7);
+  transition: 0s;
+}
+
+.c-form__input {
+  color: #d45704;
+  height: 100%;
+  width: 100%;
+  padding: 0 0.714em;
+  font-size: 18px;
+  
+}
+.c-form__input::placeholder {
+  color: currentColor;
+  opacity: 50%;
+}
+.c-form__input:required:valid {
+  color: #d45704;
+}
+.c-form__input:required:valid + .c-form__buttonLabel {
+  color: #f7f3f3;
+}
+.c-form__input:required:valid + .c-form__buttonLabel::before {
+  pointer-events: initial;
+}
+
+.c-form__buttonLabel {
+  color: #d45704;
+  height: 100%;
+  width: auto;
+  padding-left: 10px;
+}
+.c-form__buttonLabel::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.c-form__button {
+  color: inherit;
+  padding: 0;
+  height: 100%;
+  width: 5em;
+  background-color: #232526;
+} 
+ */
+
+ /* player greeting */
+
+ .greetPlayer{
+  position: relative;
+  top:0;
+  left:19em;
+  font-size: 28px;
+  font-weight: 700;
+  font-family:  "Audiowide", cursive;
+  text-shadow:  1px 0px 1px #ccc, 0px 1px 1px #eee, 
+  2px 1px 1px #ccc, 1px 2px 1px #eee,
+  3px 2px 1px #ccc, 2px 3px 1px #eee,
+  4px 3px 1px #ccc, 3px 4px 1px #eee;
+ }
+
+ .greetPlayer .effect{
+  overflow: hidden;
+  white-space: nowrap;
+  transition: transform 0.5s ease;
+  /* border-right: 0.15rem solid orange; */
+  /* animation: blink 0.75s step-end infinite,typing
+  steps(40, end); */
+ }
+ /* @keyframes typing{
+  from{
+    width: 0;
+  }
+  to{
+    width: 100%;
+  }
+ }
+ @keyframes blink{
+  from{
+    border-color: transparent;
+  }
+  50%{
+    border-color: orange;
+  }
+ } */
+
+
+ @media (min-width: 1400px) {
+  /* CSS styles for screens wider than 1200 pixels */
+  /* Place your styles here */
+  .greetPlayer{
+  
+    left:25em;
+    font-size: 32px;
+   
+   }
+}
