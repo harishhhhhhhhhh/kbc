@@ -1,0 +1,280 @@
+body {
+    background-color: #111827;
+ }
+ .congratsPage{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+ }
+ 
+ #confetti-wrapper {
+   overflow: hidden;
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   z-index: 100;
+ }
+ 
+ .confetti {
+   width: 15px;
+   height: 15px;
+   background-color: #f2d74e;
+   position: absolute;
+   left: 50%;
+   animation: confetti 5s ease-in-out -2s infinite;
+   transform-origin: left top;
+ }
+ 
+ .confetti:nth-child(1) {
+   background-color: #FCF6B0;
+   left: 10%;
+   animation-delay: 0;
+ }
+ 
+ .confetti:nth-child(2) {
+   background-color: #78531E;
+   left: 20%;
+   animation-delay: -5s;
+ }
+ 
+ .confetti:nth-child(3) {
+   background-color: #E3C47A;
+   left: 30%;
+   animation-delay: -3s;
+ }
+ 
+ .confetti:nth-child(4) {
+   background-color: #896C41;
+   left: 40%;
+   animation-delay: -2.5s;
+ }
+ 
+ .confetti:nth-child(5) {
+   background-color: #9A5F22;
+   
+   left: 50%;
+   animation-delay: -4s;
+ }
+ 
+ .confetti:nth-child(6) {
+   background-color: #DDC571;
+   left: 60%;
+   animation-delay: -6s;
+ }
+ 
+ .confetti:nth-child(7) {
+   background-color: #8A5E25;
+   left: 70%;
+   animation-delay: -1.5s;
+ }
+ 
+ .confetti:nth-child(8) {
+   background-color: #FCDF73;
+   left: 80%;
+   animation-delay: -2s;
+ }
+ 
+ .confetti:nth-child(9) {
+   background-color: #4F3A20;
+   left: 90%;
+   animation-delay: -3.5s;
+ }
+ 
+ .confetti:nth-child(10) {
+   background-color: #F0E9A0;
+   left: 100%;
+   animation-delay: -2.5s;
+ }
+ 
+ .confetti:nth-child(11) {
+   background-color: #F0E9A3;
+   left: 72%;
+   animation-delay: -5.5s;
+ }
+ 
+ .confetti:nth-child(12) {
+   background-color: #F0E4A0;
+   left: 34%;
+   animation-delay: -2.8s;
+ }
+ 
+ .confetti:nth-child(13) {
+   background-color: #F0C9A0;
+   left: 100%;
+   animation-delay: -7.5s;
+ }
+ 
+ .confetti:nth-child(14) {
+   background-color: #F0B9A0;
+   left: 16%;
+   animation-delay: -8.5s;
+ }
+ 
+ @keyframes confetti {
+   0% {
+     transform: rotateZ(15deg) rotateY(0deg) translate(0, 0);
+   }
+   25% {
+     transform: rotateZ(5deg) rotateY(360deg) translate(-5vw, 20vh);
+   }
+   50% {
+     transform: rotateZ(15deg) rotateY(720deg) translate(5vw, 60vh);
+   }
+   75% {
+     transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw, 80vh);
+   }
+   100% {
+     transform: rotateZ(15deg) rotateY(1440deg) translate(10vw, 110vh);
+   }
+ }
+
+
+
+
+
+
+ /* winner card */
+ @import url('https://fonts.googleapis.com/css?family=Bebas+Neue|Lato:300,400,700,900&display=swap');
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+body{
+  font-size:62.5%;
+}
+.random-bg{
+  height:100vh;
+  background-color:#111d5e;
+  padding-top:1px;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+.random-bg::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(17, 29, 94, 0.85);
+  z-index:0;
+}
+.winner-wrap{
+  max-width:280px;
+  min-height:280px;
+  background:#b21f66;
+  margin:5% auto 0;
+  position:relative;
+  padding:1rem 2rem 6.5rem 2rem;
+  font-family: 'Lato', sans-serif;
+  text-align:center;
+  cursor:pointer;
+}
+.winner-wrap:hover .right-ribbon{
+  right:-45px;
+  border-left:20px solid #E0B05C;
+  transition:all ease .3s;
+}
+.winner-wrap:hover .left-ribbon{
+  left:-45px;
+  border-right:20px solid #E0B05C;
+  transition:all ease .3s;
+}
+.winner-wrap:hover .winner-ribbon{
+  box-shadow:0 3px 6px 0px rgba(0,0,0,0.2);
+  transition:all ease .3s;
+}
+.border{
+  position:absolute;
+  width:90%;
+  height:90%;
+  border:1px solid rgba(255, 189, 105, 0.4);
+  left:0; right:0;
+  top:0; bottom:0;
+  margin:auto;
+}
+.medal-box{
+  width:60px;
+  height:60px;
+  background:#fe346e;
+  color:#ffbd69;
+  border-radius:50px;
+  line-height:70px;
+  font-size:2.3rem;
+  margin:.8rem auto 1rem;
+}
+.winner-wrap h1{
+  color:rgba(255, 189, 105, 0.95);
+  font-size:1.4rem;
+  font-weight:300;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.winner-wrap h2{
+  color:#fff;
+  font-size:1.2rem;
+  font-weight:400;
+  text-transform:uppercase;
+  margin-bottom:.85rem;
+}
+.winner-ribbon{
+  width:100%;
+  height:50px;
+  background:#ffbd69;
+  text-align:center;
+  font-family: 'Bebas Neue', cursive;
+  font-size:2.8rem;
+  color:#fe346e;
+  position:absolute;
+  bottom:45px;
+  left:0;
+  z-index:99;
+  box-shadow:0 10px 15px -7px rgba(0,0,0,0.2)
+}
+.right-ribbon{
+  width:0;
+  height:0;
+  position:absolute;
+  right:-35px;
+  bottom:30px;
+  border-top:24px solid #E0B05C;
+  border-bottom:24px solid #E0B05C;
+  border-left:10px solid #E0B05C;
+  border-right:25px solid transparent;
+  transition:all ease .3s;
+}
+.left-ribbon{
+  width:0;
+  height:0;
+  position:absolute;
+  left:-35px;
+  bottom:30px;
+  border-top:24px solid #E0B05C;
+  border-bottom:24px solid #E0B05C;
+  border-left:25px solid transparent;
+  border-right:10px solid #E0B05C;
+  transition:all ease .3s;
+}
+
+.medal{
+    height: 6rem;
+    position: relative;
+    margin: auto;
+    /* padding-top: 1em; */
+    z-index: 9999;
+}
+
+.playerName{
+    position: relative;
+   text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    font-family:  "Audiowide", cursive;
+    color: #f18b17;
+    text-shadow:  1px 0px 1px #111111, 0px 1px 1px #201f1f, 
+    2px 1px 1px #111111, 1px 2px 1px #111111;
+    margin-top: 30px;
+  
+ 
+}
