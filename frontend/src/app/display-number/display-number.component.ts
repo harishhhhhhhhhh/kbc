@@ -27,10 +27,10 @@ export class DisplayNumberComponent implements OnInit {
     setTimeout(() => {
       this.addingClassFlag = true;
     }, 1000);
-    console.log('hey theere');
+
     setTimeout(() => {
       this.addingClassFlag = false;
-    }, 3000);
+    }, 3000);  
     this.flipaudio.play();
   }
 }

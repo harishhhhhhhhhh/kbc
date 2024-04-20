@@ -121,10 +121,10 @@
                     </div>
                 </div>
 
-                <div class="absolute top-0 right-6 text-lg italic rounded-lg font-semibold">
+                <!-- <div class="absolute top-0 right-6 text-lg italic rounded-lg font-semibold">
                  
                     {{gameLevel+1}}
-                </div>
+                </div> -->
             </div>
 
             <div class="mt-6 flex justify-end w-3/5 ml-[19.5%]  text-white" [hidden]="wrongAnswerFlag">
@@ -132,7 +132,7 @@
                     [hidden]="!optionclicked">
                     Lock Answer
                 </button>
-                <button class="bottombtn italic" (click)="nextquestion()" *ngIf="correctAnswerFlag">
+                <button class="bottombtn italic" (click)="nextquestion()" *ngIf="correctAnswerFlag && timeLeft != 0">
                     next question
                 </button>
             </div>

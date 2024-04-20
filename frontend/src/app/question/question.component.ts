@@ -178,7 +178,7 @@ export class QuestionComponent implements OnInit {
         if (this.timeLeft > 0) {
           this.timeLeft--;
         } else {
-          // alert('entiki poooo');
+          
           this.timeupFlag = true;
         }
       }, 1000);
@@ -197,7 +197,7 @@ export class QuestionComponent implements OnInit {
   }
 
   changeColor(id: number) {
-    if(this.startFlag){
+    if(this.startFlag || this.timeLeft === 0){
     this.suspence1Audio.pause();
     this.optionclicked = true;
     this.options.forEach((element: any) => {
