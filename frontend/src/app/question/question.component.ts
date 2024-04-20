@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { timestamp } from 'rxjs';
 import { ApiServiceService } from '../api-service.service';
 import { DisplayNumberComponent } from '../display-number/display-number.component';
+import { Router } from '@angular/router';
 
 interface Question {
   id: number;
@@ -67,7 +68,8 @@ export class QuestionComponent implements OnInit {
 
   constructor(
     private service: ApiServiceService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router,
   ) {
     this.clockaudio.src = this.clockAudioSrc;
     this.correctAnsweraudio.src = this.correctAnsweraudioSrc;
@@ -176,7 +178,7 @@ export class QuestionComponent implements OnInit {
         if (this.timeLeft > 0) {
           this.timeLeft--;
         } else {
-          // alert('entiki poooo');
+          
           this.timeupFlag = true;
         }
       }, 1000);
@@ -195,6 +197,7 @@ export class QuestionComponent implements OnInit {
   }
 
   changeColor(id: number) {
+    if(this.startFlag || this.timeLeft === 0){
     this.suspence1Audio.pause();
     this.optionclicked = true;
     this.options.forEach((element: any) => {
@@ -212,6 +215,7 @@ export class QuestionComponent implements OnInit {
     // setTimeout(() => {
     //   this.optionClickSuspenceaudio.play();
     // }, 4000);
+  }
     console.log(this.crctOption);
   }
 
@@ -326,6 +330,10 @@ export class QuestionComponent implements OnInit {
     this.resetAudio();
     this.child.turnOffOrOn();
     this.currentQuestionNumber++;
+    if(this.currentQuestionNumber === 12){
+      this.router.navigate(['/congratulate']);
+    }
+    console.log("question",this.currentQuestionNumber);
     this.overlayDisplayFlag = false;
     setTimeout(() => {
       this.overlayDisplayFlag = true;

@@ -25,9 +25,16 @@
 *,::before,::after{
   --tw-ring-color:transparent;
 }
-.logo1-hover {
+.logo1-hover{
   transform: rotateY(180deg);
 }
+
+/* .logo1-hover .subHeading1{
+  background-color: #232526;
+} */
+
+
+
 
 .front {
   background-color: #232526;
@@ -49,6 +56,8 @@
   color: #333;
   transform: rotateY(180deg);
 }
+
+
 /* .container {
   display: flex;
   flex-direction: row;
@@ -71,37 +80,7 @@
   height: 100vh;
 }
 
-/* .thecard {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  transform-style: preserve-3d;
-  transition: all 0.5s ease;
-  background: yellow;
-} */
-/* 
-.thecard:hover {
-  transform: rotateY(180deg);
-} */
 
-/* .thefront {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  background: #ffc72b;
-  color: #333;
-} */
-
-/* .theback {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  background: #ffc72b;
-  color: #333;
-  transform: rotateY(180deg);
-} */
 
 .overlay {
   position: fixed;
@@ -497,6 +476,9 @@
   border-radius: 50%;
   transform: rotate(-60deg);
 }
+
+
+
 .subHeading1 .char {
   transform-origin: bottom center;
   height: 225px;
@@ -762,6 +744,16 @@
   width: 20px;
   left: 0;
   top: 0;
+}
+
+
+
+.logo1-hover .subHeading1 .char{
+  color: #232526;
+}
+
+.logo1-hover .subHeading2 .char{
+  color: #232526;
 }
 
 @-webkit-keyframes rotate {

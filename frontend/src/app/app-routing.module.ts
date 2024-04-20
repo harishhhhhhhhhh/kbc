@@ -6,6 +6,7 @@ import { DisplayNumberComponent } from './display-number/display-number.componen
 
 import { TestComponentComponent } from './test-component/test-component.component';
 import { ResultComponent } from './result/result.component';
+import { CongratulationComponent } from './congratulation/congratulation.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
 
   {path:'test',component:TestComponentComponent},
   {path: 'result', component:ResultComponent},
+  {path:'congratulate', component:CongratulationComponent},
 ];
 
 @NgModule({

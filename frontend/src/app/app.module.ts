@@ -14,12 +14,13 @@ import { AlertcomponentComponent } from './alertcomponent/alertcomponent.compone
 import { TestComponentComponent } from './test-component/test-component.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResultComponent } from './result/result.component';
+import { CongratulationComponent } from './congratulation/congratulation.component';
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, QuestionComponent, DisplayNumberComponent, ResultComponent,AlertcomponentComponent, TestComponentComponent],
+  declarations: [AppComponent, HomeComponent, QuestionComponent, DisplayNumberComponent, ResultComponent,AlertcomponentComponent, TestComponentComponent, CongratulationComponent],
 
   imports: [
     BrowserModule,
